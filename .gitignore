@@ -76,11 +76,6 @@
 # Ignore local database seeds (if using sample data).
 /db/seeds_local.rb
 
-# Ignore specific generated files (Rails CLI, etc.).
-/bin/*
-!/bin/spring
-!/bin/bundle
-
 # Ignore package-lock.json (if using npm).
 /package-lock.json
 
