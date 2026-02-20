@@ -83,4 +83,7 @@ end
 group :production do
   # Use PostgreSQL in production (on Render)
   gem "pg"
+  # Error tracking in production
+  gem "sentry-ruby"
+  gem "sentry-rails"
 end

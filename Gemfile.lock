@@ -348,6 +348,13 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    sentry-rails (6.3.1)
+      railties (>= 5.2.0)
+      sentry-ruby (~> 6.3.1)
+    sentry-ruby (6.3.1)
+      bigdecimal
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      logger
     simple_form (5.4.1)
       actionpack (>= 7.0)
       activemodel (>= 7.0)
@@ -492,6 +499,8 @@ DEPENDENCIES
   rubocop-rails-omakase
   ruby-lsp-rails
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
   simple_form
   slim-rails
   slim_lint
