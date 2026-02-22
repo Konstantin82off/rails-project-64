@@ -1,0 +1,87 @@
+# .slim-lint.yml
+# Documentation: https://github.com/sds/slim-lint
+
+# Global excludes (files and folders to ignore)
+exclude:
+  - 'vendor/**/*'
+  - 'node_modules/**/*'
+  - 'public/**/*'
+  - 'tmp/**/*'
+  - 'log/**/*'
+
+# Linters configuration
+linters:
+  # Tag case check (disabled, both cases are valid in Slim)
+  TagCase:
+    enabled: false
+
+  # Attribute quotes check
+  AttributeQuotes:
+    enabled: true
+
+  # Indentation check (critical for Slim)
+  Indentation:
+    enabled: true
+    width: 2
+
+  # Empty lines check
+  EmptyLines:
+    enabled: true
+
+  # Line length check
+  LineLength:
+    enabled: true
+    max: 120
+
+  # Comments check
+  Comment:
+    enabled: true
+
+  # RuboCop integration for Ruby code inside Slim
+  RuboCop:
+    enabled: true
+    # Ignore some RuboCop rules inside templates
+    ignored_cops:
+      - Layout/LineLength
+      - Style/StringLiterals
+      - Style/FrozenStringLiteralComment
+      - Metrics/BlockLength
+      - Layout/IndentationWidth
+
+  # Trailing whitespace check
+  TrailingWhitespace:
+    enabled: true
+
+  # Empty control statements check
+  EmptyControlStatement:
+    enabled: true
+
+  # Duplicate attributes check
+  DuplicateAttribute:
+    enabled: true
+
+  # File naming conventions check
+  FileName:
+    enabled: true
+    ignore:
+      - '**/_*.*'  # ignore partials (start with _)
+
+  # Consecutive control statements check
+  ConsecutiveControlStatements:
+    enabled: true
+    max_consecutive: 2
+
+  # Syntax check
+  Syntax:
+    enabled: true
+
+  # Redundant div tags check (disabled for educational project)
+  RedundantDiv:
+    enabled: false
+
+  # Instance variables usage in partials
+  InstanceVariables:
+    enabled: true
+    exclude:
+      - 'app/views/layouts/**/*'  # layouts can use instance variables
+      
