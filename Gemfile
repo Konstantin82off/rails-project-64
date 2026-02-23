@@ -24,6 +24,8 @@ gem "simple_form"
 gem "slim-rails"
 # Flash messages styling
 gem "flash_rails_messages"
+# Flexible authentication solution
+gem "devise"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
