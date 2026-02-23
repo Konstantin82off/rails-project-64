@@ -1,0 +1,27 @@
+ru:
+  devise:
+    sessions:
+      new:
+        title: "Войти"
+        sign_in: "Войти"
+    shared:
+      links:
+        sign_in: "Войти"
+        sign_up: "Регистрация"
+        forgot_your_password: "Забыли пароль?"
+    links:
+      sign_in: "Войти"
+      sign_up: "Регистрация"
+    sessions:
+      user:
+        signed_in: "Вы успешно вошли в систему"
+        signed_out: "Вы вышли из системы"
+        already_signed_out: "Вы уже вышли из системы"
+    failure:
+      unauthenticated: "Для продолжения необходимо войти или зарегистрироваться"
+      unconfirmed: "Для продолжения необходимо подтвердить учётную запись"
+      locked: "Ваша учётная запись заблокирована"
+      invalid: "Неверный email или пароль"
+      invalid_token: "Неверный ключ аутентификации"
+      timeout: "Ваша сессия истекла. Пожалуйста, войдите снова"
+      inactive: "Ваша учётная запись ещё не активирована"
