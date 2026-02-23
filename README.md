@@ -1,5 +1,7 @@
 # Collective Blog (Habr-like)
 
+[![CI](https://github.com/Konstantin82off/rails-project-64/actions/workflows/ci.yml/badge.svg)](https://github.com/Konstantin82off/rails-project-64/actions/workflows/ci.yml)
+
 Educational project on Ruby on Rails. A collective blog where users can create posts, publish them in categories, comment, and rate other authors' publications.
 
 ## Deployment
@@ -14,6 +16,9 @@ The application is available at: [https://rails-project-64-vtkz.onrender.com](ht
 - **Frontend:** Bootstrap 5, esbuild
 - **Template Engine:** Slim
 - **Forms:** Simple Form
+- **Linters:** RuboCop, Slim-Lint
+- **Testing:** Minitest, Power Assert
+- **Error Tracking:** Honeybadger
 - **Deployment:** Render.com
 
 ## Project Requirements
@@ -42,27 +47,47 @@ bin/rails db:migrate
 bin/dev
 ```
 
-The application will be available at: http://localhost:3000
+The application will be available at: [http://localhost:3000](http://localhost:3000/)
 
-## Database Structure
+## **Database Structure**
 
 The project uses the following models:
+
 - **User** — users
 - **Post** — posts
 - **Category** — categories
 - **Comment** — comments
 - **Like** — post ratings
 
-## Testing
+## **Testing**
 
 ```bash
+# Run all tests
 bin/rails test
+
+# Run system tests
+bin/rails test:system
+
+# Run linters
+bundle exec rubocop
+bundle exec slim-lint app/views
 ```
 
-## Deployment on Render
+## **Deployment on Render**
 
-The project is configured for deployment on Render.com via [render.yaml](render.yaml). Pushing to `main` or `development` branch automatically triggers build and deployment.
+The project is configured for deployment on [Render.com](https://render.com/) via [render.yaml](https://render.yaml/). Pushing to main or development branch automatically triggers build and deployment.
 
-## License
+## **CI/CD**
 
-Educational project from Hexlet  
+GitHub Actions is configured for automatic code checks:
+
+- Linters (RuboCop, Slim-Lint)
+- Security checks (Brakeman, bundler-audit)
+- Tests (minitest)
+- System tests
+
+The status badge at the top shows the latest build status.
+
+## **License**
+
+Educational project from Hexlet
