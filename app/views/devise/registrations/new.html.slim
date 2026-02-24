@@ -4,18 +4,24 @@ h2 Регистрация
   = render "devise/shared/error_messages", resource: resource
 
   div.field
-    = f.label :email
+    = f.label :email do
+      | Email 
+      span *
     br
     = f.email_field :email, autofocus: true, autocomplete: "email", title: "не может быть пустым"
 
   div.field
-    = f.label :password, "Пароль"
+    = f.label :password do
+      | Пароль 
+      span *
     br
     = f.password_field :password, autocomplete: "new-password", title: "минимум 6 знаков"
     em (минимум 6 знаков)
 
   div.field
-    = f.label :password_confirmation, "Подтверждение пароля"
+    = f.label :password_confirmation do
+      | Подтверждение пароля 
+      span *
     br
     = f.password_field :password_confirmation, autocomplete: "new-password", title: "не может быть пустым"
 
