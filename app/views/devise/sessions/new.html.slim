@@ -4,19 +4,19 @@ h2 Войти
   div.field
     = f.label :email
     br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autofocus: true, autocomplete: 'email'
 
   div.field
-    = f.label :password, "Пароль"
+    = f.label :password, 'Пароль'
     br
-    = f.password_field :password, autocomplete: "current-password"
+    = f.password_field :password, autocomplete: 'current-password'
 
   - if devise_mapping.rememberable?
     div.field
       = f.check_box :remember_me
-      = f.label :remember_me, "Запомнить меня"
+      = f.label :remember_me, 'Запомнить меня'
 
   div.actions
-    = f.submit "Войти"
+    = f.submit 'Войти'
 
-= render "devise/shared/links"
+= render 'devise/shared/links'
