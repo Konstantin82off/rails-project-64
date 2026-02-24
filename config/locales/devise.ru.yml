@@ -2,7 +2,7 @@ ru:
   devise:
     sessions:
       new:
-        title: "Вход"
+        title: "Войти"
       signed_in: "Вы успешно вошли"
       signed_out: "Вы вышли из системы"
     registrations:
@@ -16,5 +16,9 @@ ru:
         forgot_your_password: "Забыли пароль?"
     failure:
       unauthenticated: "Для продолжения необходимо войти или зарегистрироваться"
-      invalid: "Неверный email или пароль"
-      
+      invalid: "Неверный Email или пароль"
+    errors:
+      messages:
+        not_saved:
+          one: "%{resource} не может быть сохранён из-за ошибки:"
+          other: "%{resource} не может быть сохранён из-за %{count} ошибок:"
