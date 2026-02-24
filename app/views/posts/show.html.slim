@@ -1,2 +1,7 @@
-h1 Posts#show
-p Find me in app/views/posts/show.html.slim
+h1 = @post.title
+
+p = @post.body
+
+hr
+
+p = link_to t('posts.show.back'), posts_path

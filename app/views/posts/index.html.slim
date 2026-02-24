@@ -1,2 +1,15 @@
-h1 Posts#index
-p Find me in app/views/posts/index.html.slim
+h1 Коллективный блог
+
+- if user_signed_in?
+  p = link_to t('posts.index.new_post_link'), new_post_path
+
+- @posts.each do |post|
+  article
+    h2 = link_to post.title, post
+    p = truncate(post.body, length: 200)
+    div
+      span = t('posts.index.likes', count: post.likes_count || 0)
+      span = t('posts.index.ago', time: time_ago_in_words(post.created_at))
+      span = link_to post.user.email, "#"
+    hr
+    
