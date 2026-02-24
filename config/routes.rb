@@ -1,15 +1,12 @@
+# config/routes.rb
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "posts/index"
-  get "posts/show"
-  get "posts/new"
-  get "posts/create"
-  get "home/index"
   # Devise routes for user authentication
   devise_for :users
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Ресурсный роутинг для постов
+  resources :posts, only: %i[index show new create]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -20,5 +17,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "posts#index"
 end

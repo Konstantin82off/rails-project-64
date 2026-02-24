@@ -1,3 +1,4 @@
+/ app/views/posts/index.html.slim
 h1 Коллективный блог
 
 - if user_signed_in?
@@ -8,8 +9,8 @@ h1 Коллективный блог
     h2 = link_to post.title, post
     p = truncate(post.body, length: 200)
     div
-      span = t('posts.index.likes', count: post.likes_count || 0)
+      span = t('posts.index.likes', count: 0)
       span = t('posts.index.ago', time: time_ago_in_words(post.created_at))
-      span = link_to post.user.email, "#"
+      span = post.user.email
     hr
     

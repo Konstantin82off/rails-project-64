@@ -1,0 +1,9 @@
+# config/locales/ru.yml
+ru:
+  layouts:
+    application:
+      sign_up: "Регистрация"
+      login: "Вход"
+      edit_profile: "Редактировать профиль"
+      logout: "Выход"
+      
