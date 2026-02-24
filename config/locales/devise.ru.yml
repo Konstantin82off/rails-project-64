@@ -4,14 +4,17 @@ ru:
       new:
         title: "Вход"
       signed_in: "Вы успешно вошли"
-      signed_out: "Вы вышли"
+      signed_out: "Вы вышли из системы"
     registrations:
       new:
         title: "Регистрация"
       updated: "Ваш аккаунт обновлён"
     shared:
       links:
-        sign_in: "Вход"
+        sign_in: "Войти"
         sign_up: "Регистрация"
         forgot_your_password: "Забыли пароль?"
-        
+    failure:
+      unauthenticated: "Для продолжения необходимо войти или зарегистрироваться"
+      invalid: "Неверный email или пароль"
+      
