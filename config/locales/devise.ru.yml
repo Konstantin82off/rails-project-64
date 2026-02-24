@@ -1,24 +1,15 @@
 ru:
   devise:
-    sessions:
-      new:
-        title: "Войти"
-      signed_in: "Вы успешно вошли"
-      signed_out: "Вы вышли из системы"
     registrations:
       new:
         title: "Регистрация"
-      updated: "Ваш аккаунт обновлён"
-    shared:
-      links:
-        sign_in: "Войти"
-        sign_up: "Регистрация"
-        forgot_your_password: "Забыли пароль?"
-    failure:
-      unauthenticated: "Для продолжения необходимо войти или зарегистрироваться"
-      invalid: "Неверный Email или пароль"
     errors:
       messages:
         not_saved:
-          one: "%{resource} не может быть сохранён из-за ошибки:"
-          other: "%{resource} не может быть сохранён из-за %{count} ошибок:"
+          one: "Проверьте введенные данные:"
+          other: "Проверьте введенные данные:"
+  errors:
+    messages:
+      blank: "не может быть пустым"
+      too_short: "слишком короткий (минимум %{count} знаков)"
+      confirmation: "не совпадает с подтверждением"

@@ -1,21 +1,26 @@
 h2 Регистрация
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
+  - if resource.errors.any?
+    h3 Проверьте введенные данные:
 
   div.field
     = f.label :email do
       | Email 
       span *
     br
-    = f.email_field :email, autofocus: true, autocomplete: "email", title: "не может быть пустым"
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+    - if resource.errors[:email].any?
+      span.error = resource.errors[:email].join(", ")
 
   div.field
     = f.label :password do
       | Пароль 
       span *
     br
-    = f.password_field :password, autocomplete: "new-password", title: "минимум 6 знаков"
+    = f.password_field :password, autocomplete: "new-password"
+    - if resource.errors[:password].any?
+      span.error = resource.errors[:password].join(", ")
     em (минимум 6 знаков)
 
   div.field
@@ -23,7 +28,9 @@ h2 Регистрация
       | Подтверждение пароля 
       span *
     br
-    = f.password_field :password_confirmation, autocomplete: "new-password", title: "не может быть пустым"
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+    - if resource.errors[:password_confirmation].any?
+      span.error = resource.errors[:password_confirmation].join(", ")
 
   div.actions
     = f.submit "Регистрация"
