@@ -5,25 +5,19 @@ h2 Регистрация
 
   div.field
     = f.label :email
-    | Email 
-    span.required title="не может быть пустым" *..
     br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autofocus: true, autocomplete: "email", title: "не может быть пустым"
 
   div.field
-    = f.label :password
-    | Пароль 
-    span.required title="минимум 6 знаков" *..
+    = f.label :password, "Пароль"
     br
-    = f.password_field :password, autocomplete: "new-password"
+    = f.password_field :password, autocomplete: "new-password", title: "минимум 6 знаков"
     em (минимум 6 знаков)
 
   div.field
-    = f.label :password_confirmation
-    | Подтверждение пароля 
-    span.required title="не может быть пустым" *..
+    = f.label :password_confirmation, "Подтверждение пароля"
     br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
+    = f.password_field :password_confirmation, autocomplete: "new-password", title: "не может быть пустым"
 
   div.actions
     = f.submit "Регистрация"
