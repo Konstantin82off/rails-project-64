@@ -4,24 +4,24 @@ h2 Регистрация
   = render "devise/shared/error_messages", resource: resource
 
   div.field
-    = f.label :email do
-      | Email 
-      span.required title="не может быть пустым" *..
+    = f.label :email
+    | Email 
+    span.required title="не может быть пустым" *..
     br
     = f.email_field :email, autofocus: true, autocomplete: "email"
 
   div.field
-    = f.label :password do
-      | Пароль 
-      span.required title="минимум 6 знаков" *..
+    = f.label :password
+    | Пароль 
+    span.required title="минимум 6 знаков" *..
     br
     = f.password_field :password, autocomplete: "new-password"
     em (минимум 6 знаков)
 
   div.field
-    = f.label :password_confirmation do
-      | Подтверждение пароля 
-      span.required title="не может быть пустым" *..
+    = f.label :password_confirmation
+    | Подтверждение пароля 
+    span.required title="не может быть пустым" *..
     br
     = f.password_field :password_confirmation, autocomplete: "new-password"
 
