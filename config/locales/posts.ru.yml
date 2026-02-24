@@ -1,0 +1,17 @@
+ru:
+  posts:
+    create:
+      success: "Пост успешно создан"
+    new:
+      title: "Новый пост"
+    form:
+      title_label: "Заголовок"
+      body_label: "Содержание"
+      submit: "Создать пост"
+    index:
+      new_post_link: "Новый пост"
+      likes: "Понравилось: %{count}"
+      ago: "%{time} назад"
+    show:
+      back: "Назад к постам"
+      

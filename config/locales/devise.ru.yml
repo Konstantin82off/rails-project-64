@@ -1,0 +1,15 @@
+ru:
+  devise:
+    registrations:
+      new:
+        title: "Регистрация"
+    errors:
+      messages:
+        not_saved:
+          one: "Проверьте введенные данные:"
+          other: "Проверьте введенные данные:"
+  errors:
+    messages:
+      blank: "не может быть пустым"
+      too_short: "слишком короткий (минимум %{count} знаков)"
+      confirmation: "не совпадает с подтверждением"
