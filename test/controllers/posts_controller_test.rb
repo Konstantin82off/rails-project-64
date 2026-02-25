@@ -3,23 +3,32 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get posts_index_url
-    assert_response :success
+  setup do
+    @user = users(:one)
+    @post = posts(:one)
   end
 
-  test "should get show" do
-    get posts_show_url
+  test "should get index" do
+    get posts_url
     assert_response :success
   end
 
   test "should get new" do
-    get posts_new_url
+    sign_in @user
+    get new_post_url
     assert_response :success
   end
 
-  test "should get create" do
-    get posts_create_url
+  test "should create post" do
+    sign_in @user
+    assert_difference("Post.count") do
+      post posts_url, params: { post: { title: "New Post", body: "Body of new post" } }
+    end
+    assert_redirected_to post_url(Post.last)
+  end
+
+  test "should show post" do
+    get post_url(@post)
     assert_response :success
   end
 end
