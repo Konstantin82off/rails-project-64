@@ -4,7 +4,7 @@ h2 Регистрация
   - if resource.errors.any?
     h3 Проверьте введенные данные:
 
-  div.field
+  .field
     = f.label :email do
       | Email
       span *
@@ -13,7 +13,7 @@ h2 Регистрация
     - if resource.errors[:email].any?
       span.error = resource.errors[:email].join(', ')
 
-  div.field
+  .field
     = f.label :password do
       | Пароль
       span *
@@ -23,7 +23,7 @@ h2 Регистрация
       span.error = resource.errors[:password].join(', ')
     em (минимум 6 знаков)
 
-  div.field
+  .field
     = f.label :password_confirmation do
       | Подтверждение пароля
       span *
@@ -32,7 +32,7 @@ h2 Регистрация
     - if resource.errors[:password_confirmation].any?
       span.error = resource.errors[:password_confirmation].join(', ')
 
-  div.actions
+  .actions
     = f.submit 'Регистрация'
 
 = render 'devise/shared/links'
