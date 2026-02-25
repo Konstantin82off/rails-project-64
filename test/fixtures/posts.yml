@@ -1,11 +1,10 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# test/fixtures/posts.yml
 one:
-  title: MyString
-  body: MyText
+  title: My first post
+  body: This is the body of my first post
   user: one
 
 two:
-  title: MyString
-  body: MyText
+  title: My second post
+  body: This is the body of my second post
   user: two
