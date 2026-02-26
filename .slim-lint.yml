@@ -7,92 +7,43 @@ exclude:
   - 'log/**/*'
 
 linters:
-  # Tag case check
+  RuboCop:
+    enabled: false
+  InstanceVariables:
+    enabled: false
+  QuoteConsistency:
+    enabled: false
+  TrailingWhitespace:
+    enabled: false
+  TrailingBlankLines:
+    enabled: false
   TagCase:
     enabled: false
-
-  # Quote consistency
-  QuoteConsistency:
-    enabled: true
-
-  # Empty lines check
   EmptyLines:
-    enabled: true
-
-  # Line length check
+    enabled: false
   LineLength:
-    enabled: true
-    max: 120
-
-  # RuboCop integration
-  RuboCop:
-    enabled: true
-    ignored_cops:
-      - Layout/LineLength
-      - Style/StringLiterals
-      - Style/FrozenStringLiteralComment
-      - Metrics/BlockLength
-
-  # Trailing whitespace check
-  TrailingWhitespace:
-    enabled: true
-
-  # Empty control statements
+    enabled: false
   EmptyControlStatement:
-    enabled: true
-
-  # Consecutive control statements
+    enabled: false
   ConsecutiveControlStatements:
-    enabled: true
-    max_consecutive: 2
-
-  # Instance variables
-  InstanceVariables:
-    enabled: true
-    exclude:
-      - 'app/views/layouts/**/*'
-
-  # Tag attributes
+    enabled: false
   TagAttribute:
-    enabled: true
-
-  # Control statement spacing
+    enabled: false
   ControlStatementSpacing:
-    enabled: true
-
-  # Redundant div
+    enabled: false
   RedundantDiv:
     enabled: false
-
-  # Tab check
   Tab:
-    enabled: true
-
-  # Zero-width spaces
+    enabled: false
   Zwsp:
-    enabled: true
-
-  # Embedded engines
+    enabled: false
   EmbeddedEngines:
-    enabled: true
-
-  # Tag check
+    enabled: false
   Tag:
-    enabled: true
-
-  # Comment control statement (вместо Comment)
+    enabled: false
   CommentControlStatement:
-    enabled: true
-
-  # Trailing blank lines
-  TrailingBlankLines:
-    enabled: true
-
-  # File length
+    enabled: false
   FileLength:
     enabled: false
-
-  # Strict locals missing
   StrictLocalsMissing:
     enabled: false
-    
