@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 html
   head
-    title = content_for(:title) || 'Rails Project 64'
-    meta name='viewport' content='width=device-width, initial-scale=1'
-    meta name='apple-mobile-web-app-capable' content='yes'
-    meta name='application-name' content='Rails Project 64'
-    meta name='mobile-web-app-capable' content='yes'
+    title = content_for(:title) || "Коллективный блог"
+    meta name="viewport" content="width=device-width, initial-scale=1"
     = csrf_meta_tags
     = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
-    = yield :head
+  body.d-flex.flex-column.h-100
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      .container-fluid
+        = link_to "Коллективный блог", root_path, class: "navbar-brand"
+        button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+          span.navbar-toggler-icon
+        #navbarCollapse.collapse.navbar-collapse
+          ul.navbar-nav.me-auto.mb-2.mb-md-0
+          .d-flex
+            - if user_signed_in?
+              span.navbar-text.me-2 = current_user.name
+              = link_to 'Профиль', edit_user_registration_path, class: 'btn btn-outline-light me-2'
+              = button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-outline-light', form: { style: 'display: inline;' }
+            - else
+              = link_to 'Вход', new_user_session_path, class: 'btn btn-outline-light me-2'
+              = link_to 'Регистрация', new_user_registration_path, class: 'btn btn-primary'
 
-    link rel='icon' href='/icon.png' type='image/png'
-    link rel='icon' href='/icon.svg' type='image/svg+xml'
-    link rel='apple-touch-icon' href='/icon.png'
+    main.flex-shrink-0.mt-5.pt-3
+      .container
+        - if notice
+          .alert.alert-success.alert-dismissible.fade.show role="alert"
+            = notice
+            button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
+        - if alert
+          .alert.alert-danger.alert-dismissible.fade.show role="alert"
+            = alert
+            button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
 
-    = stylesheet_link_tag :app, 'data-turbo-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module'
+        = yield
 
-  body
-    nav
-      - if user_signed_in?
-        = link_to 'Редактировать профиль', edit_user_registration_path
-        = link_to 'Выйти', destroy_user_session_path, data: { turbo_method: :delete }
-      - else
-        = link_to 'Регистрация', new_user_registration_path
-        = link_to 'Войти', new_user_session_path
-
-    - if notice
-      p.notice = notice
-    - if alert
-      p.alert = alert
-
-    = yield
+    footer.footer.mt-auto.py-3.bg-light
+      .container.text-center
+        span.text-muted Коллективный блог — учебный проект Hexlet
+        
