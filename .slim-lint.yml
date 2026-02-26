@@ -7,6 +7,8 @@ exclude:
   - 'log/**/*'
 
 linters:
+  TagCase:
+    enabled: true
   RuboCop:
     enabled: false
   InstanceVariables:
@@ -16,8 +18,6 @@ linters:
   TrailingWhitespace:
     enabled: false
   TrailingBlankLines:
-    enabled: false
-  TagCase:
     enabled: false
   EmptyLines:
     enabled: false
