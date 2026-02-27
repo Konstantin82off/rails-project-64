@@ -28,8 +28,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should create post when signed in" do
     sign_in @user
     assert_difference("Post.count") do
-      post posts_url, params: { post: { 
-        title: "New Post", 
+      post posts_url, params: { post: {
+        title: "New Post",
         body: "Body of new post",
         category_id: @category.id
       } }

@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to @post, notice: t('.success')
+      redirect_to @post, notice: t(".success")
     else
       @categories = Category.all
       render :new, status: :unprocessable_content
@@ -30,6 +30,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id)
+    params.expect(post: %i[title body category_id])
   end
 end
