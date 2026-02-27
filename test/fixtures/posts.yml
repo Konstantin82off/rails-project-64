@@ -3,8 +3,11 @@ one:
   title: My first post
   body: This is the body of my first post
   user: one
+  category: one
 
 two:
   title: My second post
   body: This is the body of my second post
   user: two
+  category: two
+  
