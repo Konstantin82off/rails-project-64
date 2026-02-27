@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   # Devise routes for user authentication
   devise_for :users
 
-  # Ресурсный роутинг для постов
-  resources :posts, only: %i[index show new create]
+  # Ресурсный роутинг для постов с комментариями
+  resources :posts, only: %i[index show new create] do
+    resources :comments, only: %i[create destroy], controller: "post_comments"
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
