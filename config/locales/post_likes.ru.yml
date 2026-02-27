@@ -1,0 +1,9 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        post_like:
+          attributes:
+            user_id:
+              already_liked: "уже лайкнул этот пост"
+              
