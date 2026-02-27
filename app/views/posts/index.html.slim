@@ -15,6 +15,15 @@ h1 Коллективный блог
         |  | 
         = time_ago_in_words(post.created_at)
       p.card-text = truncate(post.body, length: 200)
-    .card-footer.text-muted
-      small Понравилось: 0
-      
+    .card-footer.text-muted.d-flex.justify-content-between.align-items-center
+      div
+        | Понравилось: #{post.post_likes.count}
+      div
+        - if user_signed_in?
+          - if post.liked_by?(current_user)
+            = button_to '💔', post_like_path(post), method: :delete, class: 'btn btn-sm btn-outline-danger'
+          - else
+            = button_to '❤️', post_like_path(post), method: :post, class: 'btn btn-sm btn-outline-success'
+        - else
+          span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
+          
