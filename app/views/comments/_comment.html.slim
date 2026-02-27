@@ -1,0 +1,23 @@
+.comment.mb-3.p-3.bg-light.rounded
+  .d-flex.justify-content-between.align-items-center
+    strong = comment.user.email
+    small.text-muted = time_ago_in_words(comment.created_at)
+  p.mt-2 = comment.content
+  
+  - if user_signed_in?
+    button.btn.btn-sm.btn-link.text-primary type="button" data-bs-toggle="collapse" data-bs-target="#reply-form-#{comment.id}"
+      | Ответить
+    
+    #reply-form-#{comment.id}.collapse.mt-2
+      = simple_form_for [@post, PostComment.new], html: { class: 'mb-2' } do |f|
+        = f.input :content, as: :text, label: false, input_html: { rows: 2, class: 'form-control' }
+        = f.hidden_field :parent_id, value: comment.id
+        = f.submit 'Ответить', class: 'btn btn-sm btn-outline-primary'
+  
+  - if comment.user == current_user
+    = button_to 'Удалить', post_comment_path(@post, comment), method: :delete, class: 'btn btn-sm btn-outline-danger mt-2', data: { confirm: 'Удалить комментарий?' }
+
+  - if comment.children.any?
+    .children.mt-3.ms-4
+      = render partial: 'comments/comment', collection: comment.children.order(created_at: :desc), as: :comment
+      

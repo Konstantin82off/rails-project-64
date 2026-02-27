@@ -26,6 +26,8 @@ gem "slim-rails"
 gem "flash_rails_messages"
 # Flexible authentication solution
 gem "devise"
+# Ancestry for tree structures
+gem "ancestry"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable

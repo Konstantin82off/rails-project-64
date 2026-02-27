@@ -1,16 +1,33 @@
-article
-  h1 = @post.title
-  
-  .mb-3.text-muted
-    = @post.category.name if @post.category
-    |  | 
-    = @post.user.email
-    |  | 
-    = time_ago_in_words(@post.created_at)
+h1 = @post.title
 
-  .mb-4 = simple_format(@post.body)
+.mb-3.text-muted
+  = @post.category.name if @post.category
+  |  | 
+  = @post.user.email
+  |  | 
+  = time_ago_in_words(@post.created_at)
 
-  hr
+.mb-4 = simple_format(@post.body)
 
-  = link_to t('posts.show.back'), posts_path, class: 'btn btn-secondary'
-  
+/ Комментарии
+h3 Комментарии
+
+- if @post.post_comments.any?
+  .comments
+    = render partial: 'comments/comment', collection: @post.post_comments.roots.order(created_at: :desc), as: :comment
+- else
+  p Пока нет комментариев. Будьте первым!
+
+/ Форма добавления комментария
+- if user_signed_in?
+  h4 Оставить комментарий
+  = simple_form_for [@post, PostComment.new], html: { class: 'mb-3' } do |f|
+    = f.input :content, as: :text, label: false, input_html: { rows: 3, class: 'form-control' }
+    = f.hidden_field :parent_id
+    = f.submit 'Отправить', class: 'btn btn-primary'
+- else
+  p = link_to 'Войдите', new_user_session_path, class: 'btn btn-outline-primary' чтобы оставить комментарий.
+
+hr
+
+= link_to t('posts.show.back'), posts_path, class: 'btn btn-secondary'
