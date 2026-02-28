@@ -1,6 +1,7 @@
 # Collective Blog (Habr-like)
 
 [![CI](https://github.com/Konstantin82off/rails-project-64/actions/workflows/ci.yml/badge.svg)](https://github.com/Konstantin82off/rails-project-64/actions/workflows/ci.yml)
+[![Hexlet Check](https://github.com/Konstantin82off/rails-project-64/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Konstantin82off/rails-project-64/actions/workflows/hexlet-check.yml)
 
 Educational project on Ruby on Rails. A collective blog where users can create posts, publish them in categories, comment, and rate other authors' publications.
 
@@ -86,7 +87,7 @@ GitHub Actions is configured for automatic code checks:
 - Tests (minitest)
 - System tests
 
-The status badge at the top shows the latest build status.
+The status badges at the top show the latest build status for both CI and Hexlet checks.
 
 ## **License**
 
