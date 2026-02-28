@@ -7,6 +7,7 @@ class Post < ApplicationRecord
 
   has_many :post_comments, dependent: :destroy
   has_many :post_likes, dependent: :destroy
+  has_many :comments, class_name: "PostComment", dependent: :destroy, inverse_of: :post
 
   validates :title, presence: true
   validates :body, presence: true
