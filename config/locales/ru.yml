@@ -1,9 +1,23 @@
-# config/locales/ru.yml
 ru:
-  layouts:
-    application:
-      sign_up: "Регистрация"
-      login: "Вход"
-      edit_profile: "Редактировать профиль"
-      logout: "Выход"
+  posts:
+    create:
+      success: 'Пост успешно создан'
+    update:
+      success: 'Пост успешно обновлен'
+    destroy:
+      success: 'Пост удален'
+    unauthorized: 'У вас нет прав для этого действия'
+  comments:
+    create:
+      success: 'Комментарий успешно добавлен'
+      error: 'Ошибка при добавлении комментария'
+    destroy:
+      success: 'Комментарий удален'
+      unauthorized: 'Вы не можете удалить чужой комментарий'
+  likes:
+    create:
+      success: 'Лайк поставлен'
+      error: 'Ошибка при добавлении лайка'
+    destroy:
+      success: 'Лайк убран'
       
