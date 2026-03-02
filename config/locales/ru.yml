@@ -1,5 +1,31 @@
 ru:
+  simple_form:
+    required:
+      text: 'обязательное поле'
+      mark: '*'
+    error_notification:
+      default_message: 'Обнаружены ошибки, пожалуйста, ознакомьтесь с ними ниже:'
+  helpers:
+    submit:
+      user:
+        create: 'Регистрация'
+        update: 'Обновить'
+    label:
+      user:
+        email: 'Email'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+        remember_me: 'Запомнить меня'
+  devise:
+    sessions:
+      new:
+        sign_in: 'Войти'
+    registrations:
+      new:
+        sign_up: 'Регистрация'
   posts:
+    index:
+      new_post_link: 'Новый пост'
     create:
       success: 'Пост успешно создан'
     update:
@@ -20,4 +46,5 @@ ru:
       error: 'Ошибка при добавлении лайка'
     destroy:
       success: 'Лайк убран'
+      unauthorized: 'Вы не можете удалить чужой лайк'
       

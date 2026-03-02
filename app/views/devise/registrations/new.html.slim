@@ -1,38 +1,15 @@
 h2 Регистрация
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  - if resource.errors.any?
-    h3 Проверьте введенные данные:
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = f.error_notification
 
-  .field
-    = f.label :email do
-      | Email
-      span *
-    br
-    = f.email_field :email, autofocus: true, autocomplete: 'email'
-    - if resource.errors[:email].any?
-      span.error = resource.errors[:email].join(', ')
+  .form-inputs
+    = f.input :email, required: true, autofocus: true, label: 'Email *'
+    = f.input :password, required: true, label: 'Пароль *', hint: '(минимум 6 знаков)'
+    = f.input :password_confirmation, required: true, label: 'Подтверждение пароля *'
 
-  .field
-    = f.label :password do
-      | Пароль
-      span *
-    br
-    = f.password_field :password, autocomplete: 'new-password'
-    - if resource.errors[:password].any?
-      span.error = resource.errors[:password].join(', ')
-    em (минимум 6 знаков)
+  .form-actions
+    = f.button :submit, 'Регистрация', class: 'btn btn-primary'
 
-  .field
-    = f.label :password_confirmation do
-      | Подтверждение пароля
-      span *
-    br
-    = f.password_field :password_confirmation, autocomplete: 'new-password'
-    - if resource.errors[:password_confirmation].any?
-      span.error = resource.errors[:password_confirmation].join(', ')
-
-  .actions
-    = f.submit 'Регистрация'
-
-= render 'devise/shared/links'
+  = link_to 'Войти', new_session_path(resource_name)
+  

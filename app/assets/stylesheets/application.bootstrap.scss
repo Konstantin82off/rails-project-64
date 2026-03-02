@@ -7,7 +7,6 @@ span.required {
   text-underline-offset: 2px;
 }
 
-
 span.error {
   color: red;
   display: block;
@@ -15,26 +14,8 @@ span.error {
   margin-top: 5px;
 }
 
-span.required {
-  color: red;
+.form-text {
+  color: #6c757d;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
 }
-
-
-span.error {
-  color: red;
-  display: block;
-  font-size: 0.9em;
-  margin-top: 5px;
-}
-
-span.required {
-  color: red;
-}
-
-em {
-  display: block;
-  font-size: 0.9em;
-  color: #666;
-  margin-top: 5px;
-}
-

@@ -1,22 +1,11 @@
 h2 Войти
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: 'email'
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .form-inputs
+    = f.input :email, required: true, autofocus: true, label: 'Email *'
+    = f.input :password, required: true, label: 'Пароль *'
+    = f.input :remember_me, as: :boolean, label: 'Запомнить меня' if devise_mapping.rememberable?
 
-  .field
-    = f.label :password, 'Пароль'
-    br
-    = f.password_field :password, autocomplete: 'current-password'
-
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me, 'Запомнить меня'
-
-  .actions
-    = f.submit 'Войти'
-
-= render 'devise/shared/links'
+  .form-actions
+    = f.button :submit, 'Войти', class: 'btn btn-primary'
+    
