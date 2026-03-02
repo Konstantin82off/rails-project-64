@@ -1,33 +1,46 @@
 h1 = @post.title
 
-.mb-3.text-muted
-  = @post.category.name if @post.category
-  |  | 
-  = @post.user.email
-  |  | 
-  = time_ago_in_words(@post.created_at)
+.mb-3
+  span.badge.bg-secondary = @post.category.name if @post.category
+  |  
+  span.text-muted = @post.user.email
+  |  
+  span.text-muted = time_ago_in_words(@post.created_at) + ' назад'
 
-.mb-4 = simple_format(@post.body)
+.card.mb-4
+  .card-body
+    p.card-text = @post.body
 
-/ Комментарии
-h3 Комментарии
+.card-footer.text-muted.d-flex.justify-content-between.align-items-center
+  div
+    | Понравилось: #{@post.post_likes.count}
+  div
+    - if user_signed_in?
+      - if @post.liked_by?(current_user)
+        = button_to '💔', like_path(current_user.post_likes.find_by(post: @post)), method: :delete, class: 'btn btn-sm btn-outline-danger'
+      - else
+        = button_to '❤️', likes_path(post_id: @post.id), method: :post, class: 'btn btn-sm btn-outline-success'
+    - else
+      span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
 
-- if @post.post_comments.any?
-  .comments
-    = render partial: 'comments/comment', collection: @post.post_comments.roots.order(created_at: :desc), as: :comment
-- else
-  p Пока нет комментариев. Будьте первым!
+h2.mt-4 Комментарии
 
-/ Форма добавления комментария
 - if user_signed_in?
-  h4 Оставить комментарий
-  = simple_form_for [@post, PostComment.new], html: { class: 'mb-3' } do |f|
-    = f.input :content, as: :text, label: false, input_html: { rows: 3, class: 'form-control' }
-    = f.hidden_field :parent_id
-    = f.submit 'Отправить', class: 'btn btn-primary'
-- else
-  p = link_to 'Войдите', new_user_session_path, class: 'btn btn-outline-primary'
+  .card.mb-3
+    .card-body
+      = form_with(model: [@post, PostComment.new]) do |f|
+        .mb-3
+          = f.label :content, 'Текст комментария', class: 'form-label'
+          = f.text_area :content, class: 'form-control', rows: 3
+        = f.submit 'Отправить', class: 'btn btn-primary'
 
-hr
-
-= link_to t('posts.show.back'), posts_path, class: 'btn btn-secondary'
+- @post.post_comments.roots.order(created_at: :desc).each do |comment|
+  .card.mb-2
+    .card-body
+      .d-flex.justify-content-between
+        strong = comment.user.email
+        span.text-muted.small = time_ago_in_words(comment.created_at) + ' назад'
+      p.mt-2.mb-1 = comment.content
+      - if user_signed_in? && comment.user == current_user
+        = button_to 'Удалить', post_comment_path(@post, comment), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Вы уверены?' }
+        
