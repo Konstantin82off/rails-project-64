@@ -52,17 +52,14 @@ group :development, :test do
   gem "bundler-audit", require: false
   # Static analysis for security vulnerabilities
   gem "brakeman", require: false
-  # Ruby styling
+  # Ruby styling - убираем дубликаты, оставляем только omakase
   gem "rubocop-rails-omakase", require: false
-  # Additional linting
-  gem "rubocop"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "slim_lint"
   # IDE support
   gem "solargraph"
   # Test data generation
   gem "faker"
+  # Better assertions for tests
+  gem "minitest-power_assert"
 end
 
 group :development do
@@ -80,8 +77,6 @@ group :test do
   # System testing
   gem "capybara"
   gem "selenium-webdriver"
-  # Better assertions
-  gem "minitest-power_assert"
   # Webdrivers for system tests
   gem "webdrivers"
 end

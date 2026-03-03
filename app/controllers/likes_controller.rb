@@ -1,3 +1,4 @@
+# app/controllers/likes_controller.rb
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
@@ -5,9 +6,9 @@ class LikesController < ApplicationController
   before_action :set_post
 
   def create
-    @like = current_user.post_likes.build(post: @post)
+    @like = current_user.post_likes.find_or_initialize_by(post: @post)
 
-    if @like.save
+    if @like.new_record? && @like.save
       redirect_to @post, notice: t(".success")
     else
       redirect_to @post, alert: t(".error")

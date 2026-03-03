@@ -375,10 +375,6 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 6.0, != 5.0.0)
-    slim_lint (0.34.0)
-      rexml (~> 3.2)
-      rubocop (>= 1.0, < 2.0)
-      slim (>= 3.0, < 6.0)
     solargraph (0.58.2)
       ast (~> 2.4.3)
       backport (~> 1.2)
@@ -508,15 +504,11 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.2)
-  rubocop
-  rubocop-performance
-  rubocop-rails
   rubocop-rails-omakase
   ruby-lsp-rails
   selenium-webdriver
   simple_form
   slim-rails
-  slim_lint
   solargraph
   solid_cable
   solid_cache
