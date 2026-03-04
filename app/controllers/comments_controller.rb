@@ -3,8 +3,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
-  before_action :set_comment, only: [:destroy]
-  before_action :authorize_user!, only: [:destroy]
 
   def create
     @comment = @post.post_comments.build(comment_params)
@@ -18,6 +16,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = @post.post_comments.find_by(id: params[:id])
+
+    if @comment.nil? || @comment.user != current_user
+      return redirect_to @post, alert: t(".unauthorized")
+    end
+
     @comment.destroy
     redirect_to @post, notice: t(".success")
   end
@@ -26,16 +30,6 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
-  end
-
-  def set_comment
-    @comment = @post.post_comments.find(params[:id])
-  end
-
-  def authorize_user!
-    return if @comment.user == current_user
-
-    redirect_to @post, alert: t(".unauthorized")
   end
 
   def comment_params
