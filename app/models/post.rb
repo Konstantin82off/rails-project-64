@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  belongs_to :user
-  belongs_to :creator, class_name: "User", optional: true
+  belongs_to :user, inverse_of: :posts
+  belongs_to :creator, class_name: "User", optional: true, inverse_of: :posts
   belongs_to :category, inverse_of: :posts
   has_many :post_comments, dependent: :destroy, inverse_of: :post
   has_many :post_likes, dependent: :destroy, inverse_of: :post
 
-  before_save :sync_creator_with_user
-  before_create :sync_creator_with_user
+  before_validation :set_user_from_creator, if: -> { creator_id.present? && user_id.nil? }
+  before_validation :set_creator_from_user, if: -> { user_id.present? && creator_id.nil? }
+  before_save :sync_ids
 
   def comments
     post_comments
@@ -27,7 +28,16 @@ class Post < ApplicationRecord
 
   private
 
-  def sync_creator_with_user
+  def set_user_from_creator
+    self.user_id = creator_id
+  end
+
+  def set_creator_from_user
+    self.creator_id = user_id
+  end
+
+  def sync_ids
     self.creator_id = user_id if creator_id.nil?
+    self.user_id = creator_id if user_id.nil?
   end
 end
