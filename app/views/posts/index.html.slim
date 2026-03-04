@@ -11,7 +11,7 @@ h1 Коллективный блог
       h6.card-subtitle.mb-2.text-muted
         = post.category.name if post.category
         |  | 
-        = post.user.email
+        = post.creator.email
         |  | 
         = time_ago_in_words(post.created_at)
       p.card-text = truncate(post.body, length: 200)
