@@ -1,5 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# test/fixtures/post_likes.yml
 one:
   user: one
   post: one
@@ -7,3 +6,4 @@ one:
 two:
   user: two
   post: two
+  

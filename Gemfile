@@ -52,7 +52,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   # Static analysis for security vulnerabilities
   gem "brakeman", require: false
-  # Ruby styling - убираем дубликаты, оставляем только omakase
+  # Ruby styling
   gem "rubocop-rails-omakase", require: false
   # IDE support
   gem "solargraph"
@@ -85,7 +85,5 @@ group :production do
   # Use PostgreSQL in production (on Render)
   gem "pg"
   # Error tracking in production
-  # gem "sentry-rails"
-  # gem "sentry-ruby"
   gem "honeybadger"
 end

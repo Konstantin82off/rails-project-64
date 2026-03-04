@@ -1,13 +1,18 @@
 # test/fixtures/posts.yml
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
 one:
-  title: My first post
+  title: My First Post
   body: This is the body of my first post
-  user: one
+  creator: one
   category: one
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
 
 two:
-  title: My second post
+  title: My Second Post
   body: This is the body of my second post
-  user: two
+  creator: two
   category: two
-  
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
