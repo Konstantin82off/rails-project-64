@@ -2,17 +2,13 @@
 
 class Post < ApplicationRecord
   belongs_to :user
+  belongs_to :creator, class_name: "User", optional: true
   belongs_to :category, inverse_of: :posts
   has_many :post_comments, dependent: :destroy, inverse_of: :post
   has_many :post_likes, dependent: :destroy, inverse_of: :post
 
-  def creator
-    user
-  end
-
-  def creator=(value)
-    self.user = value
-  end
+  before_save :sync_creator_with_user
+  before_create :sync_creator_with_user
 
   def comments
     post_comments
@@ -27,5 +23,11 @@ class Post < ApplicationRecord
 
   def liked_by?(user)
     post_likes.exists?(user: user)
+  end
+
+  private
+
+  def sync_creator_with_user
+    self.creator_id = user_id if creator_id.nil?
   end
 end
