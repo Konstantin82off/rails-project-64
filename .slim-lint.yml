@@ -1,4 +1,3 @@
-# .slim-lint.yml
 exclude:
   - 'vendor/**/*'
   - 'node_modules/**/*'
@@ -7,8 +6,6 @@ exclude:
   - 'log/**/*'
 
 linters:
-  TagCase:
-    enabled: true
   RuboCop:
     enabled: false
   InstanceVariables:
@@ -22,7 +19,7 @@ linters:
   EmptyLines:
     enabled: false
   LineLength:
-    enabled: false
+    max: 200
   EmptyControlStatement:
     enabled: false
   ConsecutiveControlStatements:
@@ -47,3 +44,6 @@ linters:
     enabled: false
   StrictLocalsMissing:
     enabled: false
+  TagCase:
+    enabled: true
+    

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  belongs_to :user, inverse_of: :posts
-  belongs_to :creator, class_name: "User", optional: true, inverse_of: :posts
+  belongs_to :user, optional: true
+  belongs_to :creator, class_name: "User", optional: true
   belongs_to :category, inverse_of: :posts
   has_many :post_comments, dependent: :destroy, inverse_of: :post
   has_many :post_likes, dependent: :destroy, inverse_of: :post

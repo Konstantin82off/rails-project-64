@@ -60,6 +60,8 @@ group :development, :test do
   gem "faker"
   # Better assertions for tests
   gem "minitest-power_assert"
+  # Slim template linting
+  gem "slim_lint", require: false
 end
 
 group :development do
