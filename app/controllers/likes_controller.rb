@@ -4,7 +4,6 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
   before_action :set_like, only: [:destroy]
-  before_action :authorize_user!, only: [:destroy]
 
   def create
     @like = current_user.post_likes.build(post: @post)
@@ -17,6 +16,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    raise ActiveRecord::RecordNotFound unless @like.user == current_user
+
     @like.destroy
     redirect_to @post, notice: t(".success")
   end
@@ -29,11 +30,5 @@ class LikesController < ApplicationController
 
   def set_like
     @like = PostLike.find(params[:id])
-  end
-
-  def authorize_user!
-    return if @like.user == current_user
-
-    redirect_to @post, alert: t(".unauthorized")
   end
 end

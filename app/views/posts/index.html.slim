@@ -11,7 +11,7 @@ h1 Коллективный блог
       h6.card-subtitle.mb-2.text-muted
         = post.category.name if post.category
         |  | 
-        = post.creator.email
+        = post.user.email
         |  | 
         = time_ago_in_words(post.created_at)
       p.card-text = truncate(post.body, length: 200)
@@ -26,3 +26,4 @@ h1 Коллективный блог
             = button_to '❤️', post_likes_path(post), method: :post, class: 'btn btn-sm btn-outline-success'
         - else
           span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
+          

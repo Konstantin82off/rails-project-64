@@ -44,6 +44,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show post with comments using correct routes" do
+    sign_in @user
     get post_url(@post)
     assert_response :success
 

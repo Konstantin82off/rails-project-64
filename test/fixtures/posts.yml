@@ -4,7 +4,7 @@
 one:
   title: My First Post
   body: This is the body of my first post
-  creator: one
+  user: one
   category: one
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
@@ -12,7 +12,8 @@ one:
 two:
   title: My Second Post
   body: This is the body of my second post
-  creator: two
+  user: two
   category: two
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
+  

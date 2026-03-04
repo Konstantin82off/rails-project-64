@@ -3,7 +3,7 @@ h1 = @post.title
 .mb-3
   span.badge.bg-secondary = @post.category.name if @post.category
   |  
-  span.text-muted = @post.creator.email
+  span.text-muted = @post.user.email
   |  
   span.text-muted = time_ago_in_words(@post.created_at) + ' назад'
 
@@ -43,4 +43,3 @@ h2.mt-4 Комментарии
       p.mt-2.mb-1 = comment.content
       - if user_signed_in? && comment.user == current_user
         = button_to 'Удалить', post_comment_path(@post, comment), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Вы уверены?' }
-        

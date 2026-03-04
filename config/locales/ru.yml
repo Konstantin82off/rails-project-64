@@ -5,17 +5,22 @@ ru:
       mark: '*'
     error_notification:
       default_message: 'Обнаружены ошибки, пожалуйста, ознакомьтесь с ними ниже:'
+  
   helpers:
     submit:
       user:
         create: 'Регистрация'
         update: 'Обновить'
+      post:
+        create: 'Создать пост'
+        update: 'Обновить пост'
     label:
       user:
         email: 'Email'
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         remember_me: 'Запомнить меня'
+  
   devise:
     sessions:
       new:
@@ -23,9 +28,18 @@ ru:
     registrations:
       new:
         sign_up: 'Регистрация'
+  
   posts:
+    new:
+      title: 'Новый пост'
+    edit:
+      title: 'Редактировать пост'
     index:
       new_post_link: 'Новый пост'
+    form:
+      title_label: 'Заголовок'
+      body_label: 'Содержание'
+      submit: 'Создать пост'
     create:
       success: 'Пост успешно создан'
     update:
@@ -33,6 +47,7 @@ ru:
     destroy:
       success: 'Пост удален'
     unauthorized: 'У вас нет прав для этого действия'
+  
   comments:
     create:
       success: 'Комментарий успешно добавлен'
@@ -40,6 +55,7 @@ ru:
     destroy:
       success: 'Комментарий удален'
       unauthorized: 'Вы не можете удалить чужой комментарий'
+  
   likes:
     create:
       success: 'Лайк поставлен'
@@ -47,4 +63,7 @@ ru:
     destroy:
       success: 'Лайк убран'
       unauthorized: 'Вы не можете удалить чужой лайк'
-      
+  
+  back: 'Назад'
+  to_list: 'К списку'
+  

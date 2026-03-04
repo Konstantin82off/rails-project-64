@@ -22,10 +22,6 @@ class PostsController < ApplicationController
 
   def edit
     @categories = Category.all
-    respond_to do |format|
-      format.html
-      format.json { render json: @post }
-    end
   end
 
   def create
