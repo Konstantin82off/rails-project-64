@@ -11,6 +11,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = PostComment.new
+    @comments = @post.post_comments.where(ancestry: nil).order(created_at: :desc)
   end
 
   def new
@@ -20,6 +22,10 @@ class PostsController < ApplicationController
 
   def edit
     @categories = Category.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+    end
   end
 
   def create

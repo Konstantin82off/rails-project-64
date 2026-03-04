@@ -17,9 +17,9 @@ h1 = @post.title
   div
     - if user_signed_in?
       - if @post.liked_by?(current_user)
-        = button_to '💔', like_path(current_user.post_likes.find_by(post: @post)), method: :delete, class: 'btn btn-sm btn-outline-danger'
+        = button_to '💔', post_like_path(@post, current_user.post_likes.find_by(post: @post)), method: :delete, class: 'btn btn-sm btn-outline-danger'
       - else
-        = button_to '❤️', likes_path(post_id: @post.id), method: :post, class: 'btn btn-sm btn-outline-success'
+        = button_to '❤️', post_likes_path(@post), method: :post, class: 'btn btn-sm btn-outline-success'
     - else
       span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
 
@@ -28,7 +28,7 @@ h2.mt-4 Комментарии
 - if user_signed_in?
   .card.mb-3
     .card-body
-      = form_with(model: [@post, PostComment.new]) do |f|
+      = form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f|
         .mb-3
           = f.label :content, 'Текст комментария', class: 'form-label'
           = f.text_area :content, class: 'form-control', rows: 3

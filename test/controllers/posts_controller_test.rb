@@ -5,6 +5,7 @@ require "test_helper"
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
+    @other_user = users(:two)
     @category = categories(:one)
     @post = posts(:one)
   end
@@ -27,7 +28,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post when signed in" do
     sign_in @user
-    assert_difference("Post.count") do
+    assert_difference("Post.count", 1) do
       post posts_url, params: { post: {
         title: "New Post",
         body: "Body of new post",
@@ -46,7 +47,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get post_url(@post)
     assert_response :success
 
-    # Проверяем, что форма комментария использует правильный путь post_comments_path
     assert_select "form[action=?]", post_comments_path(@post)
   end
 
@@ -72,19 +72,33 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
+  test "should not get edit when signed in as other user" do
+    sign_in @other_user
+    get edit_post_url(@post)
+    assert_redirected_to posts_url
+  end
+
   test "should update post when signed in as owner" do
     sign_in @user
     patch post_url(@post), params: { post: { title: "Updated Title" } }
     assert_redirected_to post_url(@post)
     @post.reload
-    assert { @post.title == "Updated Title" }
+    assert_equal "Updated Title", @post.title
   end
 
   test "should not update post when not signed in" do
     patch post_url(@post), params: { post: { title: "Updated Title" } }
     assert_redirected_to new_user_session_url
     @post.reload
-    assert { @post.title != "Updated Title" }
+    assert_not_equal "Updated Title", @post.title
+  end
+
+  test "should not update post when signed in as other user" do
+    sign_in @other_user
+    patch post_url(@post), params: { post: { title: "Updated Title" } }
+    assert_redirected_to posts_url
+    @post.reload
+    assert_not_equal "Updated Title", @post.title
   end
 
   test "should destroy post when signed in as owner" do
@@ -100,5 +114,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_url(@post)
     end
     assert_redirected_to new_user_session_url
+  end
+
+  test "should not destroy post when signed in as other user" do
+    sign_in @other_user
+    assert_no_difference("Post.count") do
+      delete post_url(@post)
+    end
+    assert_redirected_to posts_url
   end
 end

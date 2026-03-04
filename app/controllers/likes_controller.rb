@@ -1,14 +1,15 @@
-# app/controllers/likes_controller.rb
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
+  before_action :set_like, only: [:destroy]
+  before_action :authorize_user!, only: [:destroy]
 
   def create
-    @like = current_user.post_likes.find_or_initialize_by(post: @post)
+    @like = current_user.post_likes.build(post: @post)
 
-    if @like.new_record? && @like.save
+    if @like.save
       redirect_to @post, notice: t(".success")
     else
       redirect_to @post, alert: t(".error")
@@ -16,7 +17,6 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = current_user.post_likes.find_by!(post: @post)
     @like.destroy
     redirect_to @post, notice: t(".success")
   end
@@ -25,5 +25,15 @@ class LikesController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_like
+    @like = PostLike.find(params[:id])
+  end
+
+  def authorize_user!
+    return if @like.user == current_user
+
+    redirect_to @post, alert: t(".unauthorized")
   end
 end

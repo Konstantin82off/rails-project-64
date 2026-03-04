@@ -1,4 +1,3 @@
-# test/controllers/likes_controller_test.rb
 # frozen_string_literal: true
 
 require "test_helper"
@@ -68,6 +67,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     post post_likes_path(@post)
     like = PostLike.last
 
+    sign_out @user
     sign_in @other_user
 
     assert_raises(ActiveRecord::RecordNotFound) do
