@@ -38,8 +38,9 @@ h2.mt-4 Комментарии
   .card.mb-2
     .card-body
       .d-flex.justify-content-between
-        strong = comment.user.email  # Здесь оставляем user, так как это комментарий
+        strong = comment.user.email
         span.text-muted.small = time_ago_in_words(comment.created_at) + ' назад'
       p.mt-2.mb-1 = comment.content
       - if user_signed_in? && comment.user == current_user
         = button_to 'Удалить', post_comment_path(@post, comment), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Вы уверены?' }
+        
