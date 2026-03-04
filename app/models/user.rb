@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy, inverse_of: :user
   has_many :post_likes, dependent: :destroy, inverse_of: :user
+
+  def creator
+    self
+  end
 end

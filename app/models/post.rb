@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy, inverse_of: :post
   has_many :post_likes, dependent: :destroy, inverse_of: :post
 
+  alias_attribute :creator, :user
+
   def comments
     post_comments
   end
