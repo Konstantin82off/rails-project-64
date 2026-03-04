@@ -26,4 +26,3 @@ h1 Коллективный блог
             = button_to '❤️', post_like_path(post), method: :post, class: 'btn btn-sm btn-outline-success'
         - else
           span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
-          
