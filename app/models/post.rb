@@ -7,6 +7,14 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy, inverse_of: :post
   has_many :post_likes, dependent: :destroy, inverse_of: :post
 
+  def self.fixture_insert(attributes)
+    if attributes[:creator_id].present? && attributes[:user_id].nil?
+      attributes[:user_id] = attributes[:creator_id]
+    end
+
+    create(attributes)
+  end
+
   before_validation :set_user_from_creator, if: -> { creator_id.present? && user_id.nil? }
   before_validation :set_creator_from_user, if: -> { user_id.present? && creator_id.nil? }
   before_save :sync_ids
