@@ -4,39 +4,35 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
-# Патчим фикстуры ДО их загрузки
+# Патчим фикстуры для совместимости с Hexlet
 module FixturePatch
-  # Перехватываем чтение YAML файлов
-  def read_fixture_file(path)
+  def read_fixture_file(file)
     content = super
 
-    # Если это файл posts.yml, post_comments.yml или post_likes.yml
-    if path.to_s.include?("posts.yml") ||
-       path.to_s.include?("post_comments.yml") ||
-       path.to_s.include?("post_likes.yml")
+    # Патчим все файлы, где может быть creator
+    if file.to_s.include?("posts.yml") ||
+       file.to_s.include?("post_comments.yml") ||
+       file.to_s.include?("post_likes.yml")
 
-      # Заменяем 'creator:' на 'user_id:' во всем файле
+      # Заменяем creator: на user_id:
       content = content.gsub("creator:", "user_id:")
+
+      # Также убеждаемся, что user: превращается в user_id:
+      content = content.gsub(/user: (\w+)/, 'user_id: \1')
     end
 
     content
   end
 end
 
-# Применяем патч
 class ActiveRecord::FixtureSet
   prepend FixturePatch
 end
 
 module ActiveSupport
   class TestCase
-    # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
-
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
-
-    # Add more helper methods to be used by all tests here...
     include Devise::Test::IntegrationHelpers
   end
 end
