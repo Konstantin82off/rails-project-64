@@ -44,6 +44,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @post
 
     comment = PostComment.last
+    assert_not_nil comment.ancestry
     assert comment.ancestry.include?(parent.id.to_s)
   end
 
