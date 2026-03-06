@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
 
   def create
-    @comment = @post.post_comments.build(comment_params)
+    @comment = @post.comments.build(comment_params)
     @comment.user = current_user
 
     if @comment.save
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @comment = @post.post_comments.find(params[:id])
+    @comment = @post.comments.find(params[:id])
   end
 
   def comment_params

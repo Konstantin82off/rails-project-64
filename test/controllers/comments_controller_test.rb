@@ -31,7 +31,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create nested comment" do
     sign_in @user
-    parent = @post.post_comments.create!(user: @user, content: "Parent comment")
+    parent = @post.comments.create!(user: @user, content: "Parent comment")
 
     assert_difference("PostComment.count", 1) do
       post post_comments_path(@post), params: {
@@ -50,7 +50,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy own comment" do
     sign_in @user
-    comment = @post.post_comments.create!(user: @user, content: "Test comment")
+    comment = @post.comments.create!(user: @user, content: "Test comment")
 
     assert_difference("PostComment.count", -1) do
       delete post_comment_path(@post, comment)
@@ -60,7 +60,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not destroy someone else's comment" do
     sign_in @user
-    comment = @post.post_comments.create!(user: @other_user, content: "Test comment")
+    comment = @post.comments.create!(user: @other_user, content: "Test comment")
 
     assert_no_difference("PostComment.count") do
       delete post_comment_path(@post, comment)
@@ -69,7 +69,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not destroy comment when not signed in" do
-    comment = @post.post_comments.create!(user: @user, content: "Test comment")
+    comment = @post.comments.create!(user: @user, content: "Test comment")
 
     assert_no_difference("PostComment.count") do
       delete post_comment_path(@post, comment)
