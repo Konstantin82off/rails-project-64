@@ -25,7 +25,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @post_without_like
 
     like = PostLike.last
-    assert_equal @user.id, like.creator_id
+    assert_equal @user.id, like.user_id
     assert_equal @post_without_like.id, like.post_id
   end
 

@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.post_comments.build(comment_params)
-    @comment.creator = current_user
+    @comment.user = current_user
 
     if @comment.save
       redirect_to @post, notice: t(".success")
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if @comment.creator == current_user
+    if @comment.user == current_user
       @comment.destroy
       redirect_to @post, notice: t(".success")
     else

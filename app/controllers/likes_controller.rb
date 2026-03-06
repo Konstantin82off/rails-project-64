@@ -5,7 +5,7 @@ class LikesController < ApplicationController
   before_action :set_post
 
   def create
-    @like = current_user.created_likes.build(post: @post)
+    @like = @post.post_likes.build(user: current_user)
 
     if @like.save
       redirect_to @post, notice: t(".success")
@@ -15,7 +15,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = @post.post_likes.find_by(creator: current_user)
+    @like = @post.post_likes.find_by(user: current_user)
 
     if @like
       @like.destroy
