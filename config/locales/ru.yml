@@ -1,11 +1,4 @@
 ru:
-  simple_form:
-    required:
-      text: 'обязательное поле'
-      mark: '*'
-    error_notification:
-      default_message: 'Обнаружены ошибки, пожалуйста, ознакомьтесь с ними ниже:'
-  
   helpers:
     submit:
       user:
@@ -20,7 +13,7 @@ ru:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         remember_me: 'Запомнить меня'
-  
+
   devise:
     sessions:
       new:
@@ -28,7 +21,7 @@ ru:
     registrations:
       new:
         sign_up: 'Регистрация'
-  
+
   posts:
     new:
       title: 'Новый пост'
@@ -36,6 +29,10 @@ ru:
       title: 'Редактировать пост'
     index:
       new_post_link: 'Новый пост'
+      likes: 'Понравилось: %{count}'
+      ago: '%{time} назад'
+    show:
+      back: 'Назад к постам'
     form:
       title_label: 'Заголовок'
       body_label: 'Содержание'
@@ -47,15 +44,16 @@ ru:
     destroy:
       success: 'Пост удален'
     unauthorized: 'У вас нет прав для этого действия'
-  
+
   comments:
     create:
       success: 'Комментарий успешно добавлен'
       error: 'Ошибка при добавлении комментария'
     destroy:
       success: 'Комментарий удален'
+      error: 'Не удалось удалить комментарий'
       unauthorized: 'Вы не можете удалить чужой комментарий'
-  
+
   likes:
     create:
       success: 'Лайк поставлен'
@@ -63,7 +61,9 @@ ru:
     destroy:
       success: 'Лайк убран'
       unauthorized: 'Вы не можете удалить чужой лайк'
-  
+    errors:
+      already_liked: 'уже лайкнул этот пост'
+
   back: 'Назад'
   to_list: 'К списку'
   
