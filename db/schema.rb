@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_06_074337) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_06_081958) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_06_074337) do
     t.string "ancestry"
     t.text "content"
     t.datetime "created_at", null: false
+    t.integer "creator_id"
     t.integer "post_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
@@ -31,6 +32,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_06_074337) do
 
   create_table "post_likes", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "creator_id"
     t.integer "post_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false

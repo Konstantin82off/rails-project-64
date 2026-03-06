@@ -1,6 +1,3 @@
-# test/fixtures/post_comments.yml
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   content: "Первый комментарий"
   creator: one
@@ -12,22 +9,4 @@ two:
   creator: two
   post: one
   ancestry: "/<%= ActiveRecord::FixtureSet.identify(:one) %>/"
-
-three:
-  content: "Второй комментарий к посту"
-  creator: one
-  post: two
-  ancestry: "/"
-
-four:
-  content: "Глубокий комментарий"
-  creator: two
-  post: one
-  ancestry: "/<%= ActiveRecord::FixtureSet.identify(:one) %>/<%= ActiveRecord::FixtureSet.identify(:two) %>/"
-
-five:
-  content: "Еще один комментарий"
-  creator: one
-  post: two
-  ancestry: "/"
   

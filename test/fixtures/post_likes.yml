@@ -1,4 +1,3 @@
-# test/fixtures/post_likes.yml
 one:
   creator: one
   post: one
