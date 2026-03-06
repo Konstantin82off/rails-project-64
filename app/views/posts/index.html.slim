@@ -1,29 +1,39 @@
-h1 Коллективный блог
+<h1>Коллективный блог</h1>
 
-- if user_signed_in?
-  .mb-3
-    = link_to t('posts.index.new_post_link'), new_post_path, class: 'btn btn-primary'
+<% if user_signed_in? %>
+  <div class="mb-3">
+    <%= link_to t('posts.index.new_post_link'), new_post_path, class: 'btn btn-primary' %>
+  </div>
+<% end %>
 
-- @posts.each do |post|
-  article.card.mb-3
-    .card-body
-      h2.card-title = link_to post.title, post
-      h6.card-subtitle.mb-2.text-muted
-        = post.category.name if post.category
-        |  | 
-        = post.user.email
-        |  | 
-        = time_ago_in_words(post.created_at)
-      p.card-text = truncate(post.body, length: 200)
-    .card-footer.text-muted.d-flex.justify-content-between.align-items-center
-      div
-        | Понравилось: #{post.post_likes.count}
-      div
-        - if user_signed_in?
-          - if post.liked_by?(current_user)
-            = button_to '💔', post_like_path(post), method: :delete, class: 'btn btn-sm btn-outline-danger'
-          - else
-            = button_to '❤️', post_likes_path(post), method: :post, class: 'btn btn-sm btn-outline-success'
-        - else
-          span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
-          
+<% @posts.each do |post| %>
+  <article class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title"><%= link_to post.title, post %></h2>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <%= post.category.name if post.category %>
+        | 
+        <%= post.creator.email %>
+        | 
+        <%= time_ago_in_words(post.created_at) %>
+      </h6>
+      <p class="card-text"><%= truncate(post.body, length: 200) %></p>
+    </div>
+    <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+      <div>
+        Понравилось: <%= post.post_likes.count %>
+      </div>
+      <div>
+        <% if user_signed_in? %>
+          <% if post.liked_by?(current_user) %>
+            <%= button_to '💔', post_like_path(post, current_user.created_likes.find_by(post: post)), method: :delete, class: 'btn btn-sm btn-outline-danger' %>
+          <% else %>
+            <%= button_to '❤️', post_likes_path(post), method: :post, class: 'btn btn-sm btn-outline-success' %>
+          <% end %>
+        <% else %>
+          <span><%= link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary' %></span>
+        <% end %>
+      </div>
+    </div>
+  </article>
+<% end %>
