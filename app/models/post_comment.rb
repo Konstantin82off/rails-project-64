@@ -7,4 +7,11 @@ class PostComment < ApplicationRecord
   has_ancestry
 
   validates :content, presence: true
+
+  def parent_id
+    return nil if ancestry.blank?
+
+    parts = ancestry.split("/")
+    parts.last.to_i
+  end
 end
