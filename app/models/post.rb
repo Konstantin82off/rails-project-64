@@ -15,7 +15,8 @@ class Post < ApplicationRecord
   # Валидации
   validates :title, presence: true
   validates :body, presence: true
-  validates :creator_id, presence: true
+
+  # Не нужно валидировать creator_id, belongs_to сделает это автоматически
 
   # Методы для удобства
   def comments
