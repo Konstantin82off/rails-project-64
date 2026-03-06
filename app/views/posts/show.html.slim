@@ -1,62 +1,45 @@
-<h1><%= @post.title %></h1>
+h1 = @post.title
 
-<div class="mb-3">
-  <span class="badge bg-secondary"><%= @post.category.name if @post.category %></span>
-  |  
-  <span class="text-muted"><%= @post.creator.email %></span>
-  |  
-  <span class="text-muted"><%= time_ago_in_words(@post.created_at) %> назад</span>
-</div>
+.mb-3
+  span.badge.bg-secondary = @post.category.name if @post.category
+  |  | 
+  span.text-muted = @post.creator.email
+  |  | 
+  span.text-muted = time_ago_in_words(@post.created_at) + ' назад'
 
-<div class="card mb-4">
-  <div class="card-body">
-    <p class="card-text"><%= @post.body %></p>
-  </div>
-  <div class="card-footer text-muted d-flex justify-content-between align-items-center">
-    <div>
-      Понравилось: <%= @post.post_likes.count %>
-    </div>
-    <div>
-      <% if user_signed_in? %>
-        <% if @post.liked_by?(current_user) %>
-          <%= button_to '💔', post_like_path(@post, current_user.created_likes.find_by(post: @post)), method: :delete, class: 'btn btn-sm btn-outline-danger' %>
-        <% else %>
-          <%= button_to '❤️', post_likes_path(@post), method: :post, class: 'btn btn-sm btn-outline-success' %>
-        <% end %>
-      <% else %>
-        <span><%= link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary' %></span>
-      <% end %>
-    </div>
-  </div>
-</div>
+.card.mb-4
+  .card-body
+    p.card-text = @post.body
+  .card-footer.text-muted.d-flex.justify-content-between.align-items-center
+    div
+      | Понравилось: #{@post.post_likes.count}
+    div
+      - if user_signed_in?
+        - if @post.liked_by?(current_user)
+          = button_to '💔', post_like_path(@post, current_user.created_likes.find_by(post: @post)), method: :delete, class: 'btn btn-sm btn-outline-danger'
+        - else
+          = button_to '❤️', post_likes_path(@post), method: :post, class: 'btn btn-sm btn-outline-success'
+      - else
+        span = link_to '❤️', new_user_session_path, class: 'btn btn-sm btn-outline-secondary'
 
-<h2 class="mt-4">Комментарии</h2>
+h2.mt-4 Комментарии
 
-<% if user_signed_in? %>
-  <div class="card mb-3">
-    <div class="card-body">
-      <%= form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f| %>
-        <div class="mb-3">
-          <%= f.label :content, 'Текст комментария', class: 'form-label' %>
-          <%= f.text_area :content, class: 'form-control', rows: 3 %>
-        </div>
-        <%= f.submit 'Отправить', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+- if user_signed_in?
+  .card.mb-3
+    .card-body
+      = form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f|
+        .mb-3
+          = f.label :content, 'Текст комментария', class: 'form-label'
+          = f.text_area :content, class: 'form-control', rows: 3
+        = f.submit 'Отправить', class: 'btn btn-primary'
 
-<% @post.post_comments.roots.order(created_at: :desc).each do |comment| %>
-  <div class="card mb-2">
-    <div class="card-body">
-      <div class="d-flex justify-content-between">
-        <strong><%= comment.creator.email %></strong>
-        <span class="text-muted small"><%= time_ago_in_words(comment.created_at) %> назад</span>
-      </div>
-      <p class="mt-2 mb-1"><%= comment.content %></p>
-      <% if user_signed_in? && comment.creator == current_user %>
-        <%= button_to 'Удалить', post_comment_path(@post, comment), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Вы уверены?' } %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+- @post.post_comments.roots.order(created_at: :desc).each do |comment|
+  .card.mb-2
+    .card-body
+      .d-flex.justify-content-between
+        strong = comment.creator.email
+        span.text-muted.small = time_ago_in_words(comment.created_at) + ' назад'
+      p.mt-2.mb-1 = comment.content
+      - if user_signed_in? && comment.creator == current_user
+        = button_to 'Удалить', post_comment_path(@post, comment), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Вы уверены?' }
+        
