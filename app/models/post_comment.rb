@@ -11,7 +11,7 @@ class PostComment < ApplicationRecord
   def parent_id
     return nil if ancestry.blank?
 
-    parts = ancestry.split("/")
+    parts = ancestry.split("/").compact_blank
     parts.last.to_i
   end
 end

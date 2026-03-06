@@ -44,7 +44,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @post
 
     comment = PostComment.last
-    assert_equal parent.id, comment.parent_id
+    assert comment.ancestry.include?(parent.id.to_s)
   end
 
   test "should destroy own comment" do
