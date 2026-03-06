@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
       password: "password123",
       password_confirmation: "password123"
     )
-    assert { user.valid? }
+    assert user.valid?
   end
 
   test "should be invalid without email" do
@@ -20,8 +20,8 @@ class UserTest < ActiveSupport::TestCase
       password: "password123",
       password_confirmation: "password123"
     )
-    assert { !user.valid? }
-    assert { user.errors[:email].any? }
+    assert_not user.valid?
+    assert user.errors[:email].any?
   end
 
   test "should save user with valid data" do
@@ -31,6 +31,6 @@ class UserTest < ActiveSupport::TestCase
       password: "password123",
       password_confirmation: "password123"
     )
-    assert { user.save }
+    assert user.save
   end
 end
