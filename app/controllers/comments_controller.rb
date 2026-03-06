@@ -36,6 +36,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.expect(post_comment: %i[content ancestry])
+    params.expect(post_comment: %i[content parent_id])
   end
 end
