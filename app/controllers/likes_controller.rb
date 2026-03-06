@@ -17,10 +17,11 @@ class LikesController < ApplicationController
   def destroy
     @like = @post.post_likes.find_by(creator: current_user)
 
-    if @like&.destroy
+    if @like
+      @like.destroy
       redirect_to @post, notice: t(".success")
     else
-      redirect_to @post, alert: t(".not_found")
+      redirect_to @post, alert: t(".not_found"), status: :not_found
     end
   end
 
