@@ -3,34 +3,28 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize_user!, only: %i[edit update destroy]
+  before_action :authorize_creator!, only: %i[edit update destroy]
 
   def index
-    @posts = Post.includes(:user, :category).order(created_at: :desc)
+    @posts = Post.includes(:creator, :category).order(created_at: :desc)
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = PostComment.new
-    @comments = @post.post_comments.where(ancestry: nil).order(created_at: :desc)
   end
 
   def new
     @post = Post.new
-    @categories = Category.all
   end
 
-  def edit
-    @categories = Category.all
-  end
+  def edit; end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_user.created_posts.build(post_params)
 
     if @post.save
       redirect_to @post, notice: t(".success")
     else
-      @categories = Category.all
       render :new, status: :unprocessable_content
     end
   end
@@ -39,7 +33,6 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: t(".success")
     else
-      @categories = Category.all
       render :edit, status: :unprocessable_content
     end
   end
@@ -55,8 +48,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def authorize_user!
-    redirect_to posts_url, alert: t(".unauthorized") unless @post.user == current_user
+  def authorize_creator!
+    return if @post.creator == current_user
+
+    redirect_to posts_url, alert: t(".unauthorized")
   end
 
   def post_params

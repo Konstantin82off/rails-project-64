@@ -3,27 +3,26 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
+  before_action :set_comment, only: [:destroy]
 
   def create
     @comment = @post.post_comments.build(comment_params)
-    @comment.user = current_user
+    @comment.creator = current_user
 
     if @comment.save
       redirect_to @post, notice: t(".success")
     else
-      redirect_to @post, alert: t(".error")
+      redirect_to @post, alert: @comment.errors.full_messages.to_sentence
     end
   end
 
   def destroy
-    @comment = @post.post_comments.find_by(id: params[:id])
-
-    if @comment.nil? || @comment.user != current_user
-      return redirect_to @post, alert: t(".unauthorized")
+    if @comment.creator == current_user
+      @comment.destroy
+      redirect_to @post, notice: t(".success")
+    else
+      redirect_to @post, alert: t(".unauthorized")
     end
-
-    @comment.destroy
-    redirect_to @post, notice: t(".success")
   end
 
   private
@@ -32,7 +31,11 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
+  def set_comment
+    @comment = @post.post_comments.find(params[:id])
+  end
+
   def comment_params
-    params.expect(post_comment: %i[content parent_id])
+    params.expect(post_comment: %i[content ancestry])
   end
 end

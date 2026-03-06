@@ -5,24 +5,23 @@ class LikesController < ApplicationController
   before_action :set_post
 
   def create
-    @like = current_user.post_likes.build(post: @post)
+    @like = current_user.created_likes.build(post: @post)
 
     if @like.save
       redirect_to @post, notice: t(".success")
     else
-      redirect_to @post, alert: t(".error")
+      redirect_to @post, alert: @like.errors.full_messages.to_sentence
     end
   end
 
   def destroy
-    @like = PostLike.find_by(id: params[:id])
+    @like = @post.post_likes.find_by(creator: current_user)
 
-    if @like.nil? || @like.user != current_user
-      raise ActiveRecord::RecordNotFound
+    if @like&.destroy
+      redirect_to @post, notice: t(".success")
+    else
+      redirect_to @post, alert: t(".not_found")
     end
-
-    @like.destroy
-    redirect_to @post, notice: t(".success")
   end
 
   private
