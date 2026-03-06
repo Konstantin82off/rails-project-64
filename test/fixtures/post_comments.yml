@@ -3,31 +3,31 @@
 
 one:
   content: "Первый комментарий"
-  user: one
+  creator: one
   post: one
   ancestry: "/"
 
 two:
   content: "Ответ на первый комментарий"
-  user: two
+  creator: two
   post: one
   ancestry: "/<%= ActiveRecord::FixtureSet.identify(:one) %>/"
 
 three:
   content: "Второй комментарий к посту"
-  user: one
+  creator: one
   post: two
   ancestry: "/"
 
 four:
   content: "Глубокий комментарий"
-  user: two
+  creator: two
   post: one
   ancestry: "/<%= ActiveRecord::FixtureSet.identify(:one) %>/<%= ActiveRecord::FixtureSet.identify(:two) %>/"
 
 five:
   content: "Еще один комментарий"
-  user: one
+  creator: one
   post: two
   ancestry: "/"
   
