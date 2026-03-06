@@ -1,12 +1,12 @@
 one:
   content: "Первый комментарий"
-  creator: one
+  user: one
   post: one
   ancestry: "/"
 
 two:
   content: "Ответ на первый комментарий"
-  creator: two
+  user: two
   post: one
   ancestry: "/<%= ActiveRecord::FixtureSet.identify(:one) %>/"
   

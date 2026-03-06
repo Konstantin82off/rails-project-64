@@ -1,8 +1,8 @@
 one:
-  creator: one
+  user: one
   post: one
 
 two:
-  creator: two
+  user: two
   post: two
   
