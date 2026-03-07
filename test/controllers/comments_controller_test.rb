@@ -13,7 +13,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference("PostComment.count") do
       post post_comments_path(@post), params: { post_comment: { content: "Test comment" } }
     end
-    assert_redirected_to new_user_session_url
+    assert { response.redirect? }
+    assert { response.location == new_user_session_url }
   end
 
   test "should create comment when signed in" do
@@ -21,12 +22,13 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("PostComment.count", 1) do
       post post_comments_path(@post), params: { post_comment: { content: "Test comment" } }
     end
-    assert_redirected_to @post
+    assert { response.redirect? }
+    assert { response.location == post_url(@post) }
 
     comment = PostComment.last
-    assert_equal @user.id, comment.user_id
-    assert_equal @post.id, comment.post_id
-    assert_equal "Test comment", comment.content
+    assert { comment.user_id == @user.id }
+    assert { comment.post_id == @post.id }
+    assert { comment.content == "Test comment" }
   end
 
   test "should create nested comment" do
@@ -41,11 +43,12 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to @post
+    assert { response.redirect? }
+    assert { response.location == post_url(@post) }
 
     comment = PostComment.last
-    assert_not_nil comment.ancestry
-    assert comment.ancestry.include?(parent.id.to_s)
+    assert { !comment.ancestry.nil? }
+    assert { comment.ancestry.include?(parent.id.to_s) }
   end
 
   test "should destroy own comment" do
@@ -55,7 +58,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("PostComment.count", -1) do
       delete post_comment_path(@post, comment)
     end
-    assert_redirected_to @post
+    assert { response.redirect? }
+    assert { response.location == post_url(@post) }
   end
 
   test "should not destroy someone else's comment" do
@@ -65,7 +69,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference("PostComment.count") do
       delete post_comment_path(@post, comment)
     end
-    assert_redirected_to @post
+    assert { response.redirect? }
+    assert { response.location == post_url(@post) }
   end
 
   test "should not destroy comment when not signed in" do
@@ -74,6 +79,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference("PostComment.count") do
       delete post_comment_path(@post, comment)
     end
-    assert_redirected_to new_user_session_url
+    assert { response.redirect? }
+    assert { response.location == new_user_session_url }
   end
 end
