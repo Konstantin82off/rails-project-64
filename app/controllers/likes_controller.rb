@@ -21,7 +21,7 @@ class LikesController < ApplicationController
       @like.destroy
       redirect_to @post, notice: t(".success")
     else
-      redirect_to @post, alert: t(".not_found"), status: :not_found
+      redirect_to @post, alert: t(".not_found")
     end
   end
 

@@ -61,9 +61,9 @@ ru:
     destroy:
       success: 'Лайк убран'
       unauthorized: 'Вы не можете удалить чужой лайк'
+      not_found: 'Лайк не найден'
     errors:
       already_liked: 'уже лайкнул этот пост'
 
   back: 'Назад'
   to_list: 'К списку'
-  
