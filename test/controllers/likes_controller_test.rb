@@ -70,7 +70,10 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     sign_in @other_user
 
     delete post_like_path(like.post, like)
-    assert { response.status == 404 }
+
+    assert { response.redirect? }
+    assert { response.location == post_url(like.post) }
     assert { PostLike.exists?(like.id) }
+    assert { flash[:alert].present? }
   end
 end
