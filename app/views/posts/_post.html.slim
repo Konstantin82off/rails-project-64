@@ -1,12 +1,10 @@
 article.card.mb-3
   .card-body
-    .text-muted.mb-2
-      = post.category.name if post.category
-    h2.card-title.h4 = link_to post.title, post
+    h2.card-title.h5
+      = link_to post.title, post, class: 'text-decoration-none text-dark'
     p.card-text = truncate(post.body, length: 200)
-  .card-footer.text-muted
-    .d-flex.align-items-center.gap-3
-      = render 'likes/like_button', post: post
-      span = time_ago_in_words(post.created_at)
-      span = post.creator.email
-      
+  .card-footer.bg-transparent.text-muted.small.d-flex.gap-3.border-top-0
+    = render 'likes/like_button', post: post
+    span = time_ago_in_words(post.created_at)
+    span = post.creator.email
+    

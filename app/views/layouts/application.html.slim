@@ -8,25 +8,27 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
-  body.d-flex.flex-column.h-100
-    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
-      .container-fluid
-        = link_to "Коллективный блог", root_path, class: "navbar-brand"
+  body.d-flex.flex-column.min-vh-100
+    nav.navbar.navbar-expand-md.navbar-light.bg-white.border-bottom.py-3
+      .container
+        = link_to "Konstantin's Blog", root_path, class: "navbar-brand fw-bold fs-4"
         button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
           span.navbar-toggler-icon
         #navbarCollapse.collapse.navbar-collapse
           ul.navbar-nav.ms-auto
             - if user_signed_in?
               li.nav-item
-                = button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-outline-light'
+                span.navbar-text.me-3 = current_user.email
+              li.nav-item
+                = button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-link text-decoration-none p-0 text-muted'
             - else
               li.nav-item
-                = link_to 'Вход', new_user_session_path, class: 'nav-link'
+                = link_to 'Войти', new_user_session_path, class: 'nav-link px-3 text-muted'
               li.nav-item
-                = link_to 'Регистрация', new_user_registration_path, class: 'nav-link'
+                = link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-link px-3 text-muted'
 
-    main.flex-shrink-0.mt-5.pt-3
-      .container
+    main.flex-grow-1
+      .container.mt-4
         - if notice
           .alert.alert-success.alert-dismissible.fade.show role="alert"
             = notice
@@ -37,8 +39,4 @@ html
             button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
 
         = yield
-
-    footer.footer.mt-auto.py-3.bg-light
-      .container.text-center
-        span.text-muted Коллективный блог — учебный проект Hexlet
         
