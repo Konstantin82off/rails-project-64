@@ -1,10 +1,10 @@
-article.card.mb-3
+article.card.mb-4
   .card-body
-    h2.card-title.h5
+    h2.card-title.h5.mb-2
       = link_to post.title, post, class: 'text-decoration-none text-dark'
-    p.card-text = truncate(post.body, length: 200)
-  .card-footer.bg-transparent.text-muted.small.d-flex.gap-3.border-top-0
-    = render 'likes/like_button', post: post
-    span = time_ago_in_words(post.created_at)
-    span = post.creator.email
-    
+    p.card-text.mb-2 = truncate(post.body, length: 300)
+    .d-flex.flex-wrap.align-items-center.gap-3.text-muted.small
+      = render 'likes/like_button', post: post
+      span = time_ago_in_words(post.created_at)
+      = mail_to post.creator.email, post.creator.email, class: 'text-muted text-decoration-none'
+      
