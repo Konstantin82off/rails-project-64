@@ -25,5 +25,9 @@ module RailsProject64
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Set Russian as default locale
+    config.i18n.default_locale = :ru
+    config.i18n.available_locales = %i[ru en]
   end
 end
