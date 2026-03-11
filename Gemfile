@@ -24,6 +24,8 @@ gem "simple_form"
 gem "slim-rails"
 # Flash messages styling
 gem "flash_rails_messages"
+# Translations for Rails (e.g., time_ago_in_words)
+gem "rails-i18n", github: "svenfuchs/rails-i18n", branch: "master"
 # Flexible authentication solution
 gem "devise"
 # Ancestry for tree structures
