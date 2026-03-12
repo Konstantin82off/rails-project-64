@@ -19,6 +19,21 @@ ru:
       text: 'не может быть пустым'
       mark: '*'
 
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'уже существует'
+              blank: 'не может быть пустым'
+              invalid: 'имеет неверный формат'
+            password:
+              blank: 'не может быть пустым'
+              too_short: 'слишком короткий (минимум %{count} знаков)'
+            password_confirmation:
+              confirmation: 'не совпадает с подтверждением'
+
   devise:
     sessions:
       new:
@@ -26,6 +41,38 @@ ru:
     registrations:
       new:
         sign_up: 'Регистрация'
+      user:
+        signed_up: 'Добро пожаловать! Вы успешно зарегистрировались.'
+    confirmations:
+      user:
+        confirmed: 'Ваш email успешно подтвержден.'
+    passwords:
+      user:
+        updated: 'Ваш пароль успешно изменен.'
+        send_instructions: 'Вы получите инструкцию по сбросу пароля на ваш email.'
+    unlocks:
+      user:
+        unlocked: 'Ваша учетная запись разблокирована.'
+    failure:
+      user:
+        unauthenticated: 'Вам необходимо войти или зарегистрироваться.'
+        invalid: 'Неверный email или пароль.'
+        not_found_in_database: 'Неверный email или пароль.'
+        locked: 'Ваша учетная запись заблокирована.'
+        last_attempt: 'У вас осталась последняя попытка перед блокировкой.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Инструкции по подтверждению'
+      reset_password_instructions:
+        subject: 'Инструкции по сбросу пароля'
+      unlock_instructions:
+        subject: 'Инструкции по разблокировке'
+
+  errors:
+    messages:
+      not_saved:
+        one: 'Проверьте введенные данные:'
+        other: 'Проверьте введенные данные:'
 
   posts:
     new:

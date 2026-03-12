@@ -15,12 +15,17 @@ html
         button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
           span.navbar-toggler-icon
         #navbarCollapse.collapse.navbar-collapse
-          ul.navbar-nav.ms-auto
+          ul.navbar-nav.ms-auto.align-items-center
             - if user_signed_in?
               li.nav-item
                 span.navbar-text.me-3 = current_user.email
               li.nav-item
-                = button_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-link text-decoration-none p-0 text-muted'
+                = link_to 'Новый пост', new_post_path, class: 'nav-link'
+              li.nav-item
+                = button_to 'Выйти', destroy_user_session_path, 
+                    method: :delete, 
+                    class: 'btn btn-link nav-link p-0 text-muted',
+                    form: { class: 'd-inline' }
             - else
               li.nav-item
                 = link_to 'Войти', new_user_session_path, class: 'nav-link px-4'
