@@ -5,7 +5,7 @@
       .flex-grow-1
         .d-flex.align-items-center.gap-2
           strong = comment.user.email
-          span.text-muted.small = l(comment.created_at, format: :long)
+          span.text-muted.small = l(comment.created_at, format: :long) if comment.created_at
       - if user_signed_in? && comment.user == current_user
         = button_to post_comment_path(@post, comment), 
             method: :delete, 
@@ -20,7 +20,7 @@
         button.btn.btn-sm.btn-link.text-decoration-none.p-0 type="button" data-bs-toggle="collapse" data-bs-target="#reply-form-#{comment.id}"
           | ответить
 
-        #reply-form-#{comment.id}.collapse.mt-2
+        div class="collapse mt-2" id="reply-form-#{comment.id}"
           = form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f|
             = f.hidden_field :parent_id, value: comment.id
             .mb-2
@@ -31,3 +31,4 @@
   .ms-4.mt-2
     - comment.children.each do |child|
       = render 'comments/comment', comment: child
+      
