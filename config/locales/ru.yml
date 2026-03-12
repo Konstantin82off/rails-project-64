@@ -14,6 +14,11 @@ ru:
         password_confirmation: 'Подтверждение пароля'
         remember_me: 'Запомнить меня'
 
+  simple_form:
+    required:
+      text: 'не может быть пустым'
+      mark: '*'
+
   devise:
     sessions:
       new:
@@ -67,3 +72,4 @@ ru:
 
   back: 'Назад'
   to_list: 'К списку'
+  
