@@ -2,7 +2,7 @@
 
 class CreateTables < ActiveRecord::Migration[8.1]
   def change
-    create_table :users do |t|
+    create_table :users, if_not_exists: true do |t|
       t.string :email, null: false
       t.string :encrypted_password, default: "", null: false
       t.string :name
@@ -18,12 +18,12 @@ class CreateTables < ActiveRecord::Migration[8.1]
       t.index :reset_password_token, unique: true
     end
 
-    create_table :categories do |t|
+    create_table :categories, if_not_exists: true do |t|
       t.string :name
       t.timestamps
     end
 
-    create_table :posts do |t|
+    create_table :posts, if_not_exists: true do |t|
       t.string :title, null: false
       t.text :body, null: false
       t.references :creator, null: false, foreign_key: { to_table: :users }
@@ -31,7 +31,7 @@ class CreateTables < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    create_table :post_comments do |t|
+    create_table :post_comments, if_not_exists: true do |t|
       t.text :content, null: false
       t.references :user, null: false, foreign_key: true
       t.references :post, null: false, foreign_key: true
@@ -40,7 +40,7 @@ class CreateTables < ActiveRecord::Migration[8.1]
       t.index :ancestry
     end
 
-    create_table :post_likes do |t|
+    create_table :post_likes, if_not_exists: true do |t|
       t.references :user, null: false, foreign_key: true
       t.references :post, null: false, foreign_key: true
       t.timestamps
