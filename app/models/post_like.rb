@@ -7,6 +7,6 @@ class PostLike < ApplicationRecord
 
   validates :user_id, uniqueness: {
     scope: :post_id,
-    message: ->(_record, _) { I18n.t("likes.errors.already_liked") }
+    message: ->(_record, _) { I18n.t('likes.errors.already_liked') }
   }
 end

@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @post, notice: t(".success")
+      redirect_to @post, notice: t('.success')
     else
       redirect_to @post, alert: @comment.errors.full_messages.to_sentence
     end
@@ -21,9 +21,9 @@ class CommentsController < ApplicationController
 
     if @comment.user == current_user
       @comment.destroy
-      redirect_to @post, notice: t(".success")
+      redirect_to @post, notice: t('.success')
     else
-      redirect_to @post, alert: t(".unauthorized")
+      redirect_to @post, alert: t('.unauthorized')
     end
   end
 

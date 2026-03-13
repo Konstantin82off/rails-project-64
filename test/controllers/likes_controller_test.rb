@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -10,17 +10,17 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     @post_with_like = posts(:one)
   end
 
-  test "should not create like when not signed in" do
-    assert_no_difference("PostLike.count") do
+  test 'should not create like when not signed in' do
+    assert_no_difference('PostLike.count') do
       post post_likes_path(@post_without_like)
     end
     assert { response.redirect? }
     assert { response.location == new_user_session_url }
   end
 
-  test "should create like when signed in" do
+  test 'should create like when signed in' do
     sign_in @user
-    assert_difference("PostLike.count", 1) do
+    assert_difference('PostLike.count', 1) do
       post post_likes_path(@post_without_like)
     end
     assert { response.redirect? }
@@ -31,22 +31,22 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert { like.post_id == @post_without_like.id }
   end
 
-  test "should not create duplicate like" do
+  test 'should not create duplicate like' do
     sign_in @user
     post post_likes_path(@post_with_like)
 
-    assert_no_difference("PostLike.count") do
+    assert_no_difference('PostLike.count') do
       post post_likes_path(@post_with_like)
     end
     assert { response.redirect? }
     assert { response.location == post_url(@post_with_like) }
   end
 
-  test "should destroy like when signed in as owner" do
+  test 'should destroy like when signed in as owner' do
     sign_in @user
     like = post_likes(:one)
 
-    assert_difference("PostLike.count", -1) do
+    assert_difference('PostLike.count', -1) do
       delete post_like_path(like.post, like)
     end
     assert { response.redirect? }
@@ -54,17 +54,17 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert { !PostLike.exists?(like.id) }
   end
 
-  test "should not destroy like when not signed in" do
+  test 'should not destroy like when not signed in' do
     like = post_likes(:one)
 
-    assert_no_difference("PostLike.count") do
+    assert_no_difference('PostLike.count') do
       delete post_like_path(like.post, like)
     end
     assert { response.redirect? }
     assert { response.location == new_user_session_url }
   end
 
-  test "should not destroy like by other user" do
+  test 'should not destroy like by other user' do
     like = post_likes(:one)
 
     sign_in @other_user

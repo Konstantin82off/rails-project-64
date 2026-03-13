@@ -63,9 +63,9 @@ Style/Documentation:
 Style/IfUnlessModifier:
   Enabled: false
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-  Enabled: true
+# Style/StringLiterals:
+#   EnforcedStyle: double_quotes
+#   Enabled: true
 
 Style/FrozenStringLiteralComment:
   Enabled: true

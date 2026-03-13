@@ -1,93 +1,93 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.2"
+gem 'rails', '~> 8.1.2'
 # The modern asset pipeline for Rails
-gem "propshaft"
+gem 'propshaft'
 # Use the Puma web server
-gem "puma", ">= 5.0"
+gem 'puma', '>= 5.0'
 # Bundle and transpile JavaScript
-gem "jsbundling-rails"
+gem 'jsbundling-rails'
 # Hotwire's SPA-like page accelerator
-gem "turbo-rails"
+gem 'turbo-rails'
 # Hotwire's modest JavaScript framework
-gem "stimulus-rails"
+gem 'stimulus-rails'
 # Bundle and process CSS
-gem "cssbundling-rails"
+gem 'cssbundling-rails'
 # Build JSON APIs with ease
-gem "jbuilder"
+gem 'jbuilder'
 # Forms made easy
-gem "simple_form"
+gem 'simple_form'
 # Slim templates for cleaner views
-gem "slim-rails"
+gem 'slim-rails'
 # Flash messages styling
-gem "flash_rails_messages"
+gem 'flash_rails_messages'
 # Translations for Rails (e.g., time_ago_in_words)
-gem "rails-i18n", github: "svenfuchs/rails-i18n", branch: "master"
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 # Flexible authentication solution
-gem "devise"
+gem 'devise'
 # Ancestry for tree structures
-gem "ancestry"
+gem 'ancestry'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[windows jruby]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cable"
-gem "solid_cache"
-gem "solid_queue"
+gem 'solid_cable'
+gem 'solid_cache'
+gem 'solid_queue'
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+gem 'bootsnap', require: false
 # Deploy this application anywhere as a Docker container
-gem "kamal", require: false
+gem 'kamal', require: false
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma
-gem "thruster", require: false
+gem 'thruster', require: false
 # Use Active Storage variants
-gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # Debugging
-  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
+  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   # Use sqlite3 as the database for development and test
-  gem "sqlite3", ">= 2.1"
+  gem 'sqlite3', '>= 2.1'
   # Security audits
-  gem "bundler-audit", require: false
+  gem 'bundler-audit', require: false
   # Static analysis for security vulnerabilities
-  gem "brakeman", require: false
+  gem 'brakeman', require: false
   # Ruby styling
-  gem "rubocop-rails-omakase", require: false
+  gem 'rubocop-rails-omakase', require: false
   # IDE support
-  gem "solargraph"
+  gem 'solargraph'
   # Test data generation
-  gem "faker"
+  gem 'faker'
   # Better assertions for tests
-  gem "minitest-power_assert"
+  gem 'minitest-power_assert'
   # Slim template linting
-  gem "slim_lint", require: false
+  gem 'slim_lint', require: false
 end
 
 group :development do
   # Use console on exceptions pages
-  gem "web-console"
+  gem 'web-console'
   # Convert HTML to Slim
-  gem "html2slim"
+  gem 'html2slim'
   # Debug i18n
-  gem "i18n-debug"
+  gem 'i18n-debug'
   # Rails support for Ruby LSP
-  gem "ruby-lsp-rails"
+  gem 'ruby-lsp-rails'
 end
 
 group :test do
   # System testing
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'selenium-webdriver'
   # Webdrivers for system tests
-  gem "webdrivers"
+  gem 'webdrivers'
 end
 
 group :production do
   # Use PostgreSQL in production (on Render)
-  gem "pg"
+  gem 'pg'
   # Error tracking in production
-  gem "honeybadger"
+  gem 'honeybadger'
 end

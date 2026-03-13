@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @post = current_user.created_posts.build(post_params)
 
     if @post.save
-      redirect_to @post, notice: t(".success")
+      redirect_to @post, notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: t(".success")
+      redirect_to @post, notice: t('.success')
     else
       render :edit, status: :unprocessable_content
     end
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: t(".success")
+    redirect_to posts_url, notice: t('.success')
   end
 
   private
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   def authorize_creator!
     return if @post.creator == current_user
 
-    redirect_to posts_url, alert: t(".unauthorized")
+    redirect_to posts_url, alert: t('.unauthorized')
   end
 
   def post_params

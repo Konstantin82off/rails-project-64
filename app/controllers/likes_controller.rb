@@ -9,7 +9,7 @@ class LikesController < ApplicationController
     @like = @post.likes.build(user: current_user)
 
     if @like.save
-      redirect_to @post, notice: t(".success")
+      redirect_to @post, notice: t('.success')
     else
       redirect_to @post, alert: @like.errors.full_messages.to_sentence
     end
@@ -23,9 +23,9 @@ class LikesController < ApplicationController
 
     if @like
       @like.destroy
-      redirect_to @post, notice: t(".success")
+      redirect_to @post, notice: t('.success')
     else
-      redirect_to @post, alert: t(".not_found")
+      redirect_to @post, alert: t('.not_found')
     end
   end
 end

@@ -2,26 +2,26 @@
 
 # Создаем категории
 categories = Category.create!([
-                                { name: "Программирование" },
-                                { name: "Жизнь" },
-                                { name: "Путешествия" }
+                                { name: 'Программирование' },
+                                { name: 'Жизнь' },
+                                { name: 'Путешествия' }
                               ])
 
 # Создаем тестовых пользователей
-user = User.find_or_create_by!(email: "test@example.org") do |u|
-  u.password = "password"
-  u.password_confirmation = "password"
+user = User.find_or_create_by!(email: 'test@example.org') do |u|
+  u.password = 'password'
+  u.password_confirmation = 'password'
 end
 
-user2 = User.find_or_create_by!(email: "test2@example.org") do |u|
-  u.password = "password"
-  u.password_confirmation = "password"
+user2 = User.find_or_create_by!(email: 'test2@example.org') do |u|
+  u.password = 'password'
+  u.password_confirmation = 'password'
 end
 
 # Создаем тестовые посты (в правильном порядке: динамика выше, криптография ниже)
 posts = [
   {
-    title: "Что такое динамическое программирование",
+    title: 'Что такое динамическое программирование',
     body: <<~TEXT.strip,
       Работу разработчика часто можно сравнить с решением головоломок. Как в настоящей головоломке, разработчику приходится тратить существенные ресурсы не столько на реализацию конкретного решения, сколько на выбор оптимального подхода. Иногда задача решается легко и эффективно, а порой — только полным перебором всех возможных вариантов. Такой подход часто называют наивным решением. Он имеет существенный минус — временные затраты.
 
@@ -31,7 +31,7 @@ posts = [
     creator: user2
   },
   {
-    title: "Что такое криптография?",
+    title: 'Что такое криптография?',
     body: <<~TEXT.strip,
       Это может быть не очевидно, но мы сталкиваемся с криптографией каждый день. Например, когда мы оплачиваем покупки картой, смотрим видео на YouTube или заправляем машину, криптография защищает нашу информацию. Может показаться, что криптография – это удел разработчиков, хакеров и корпораций, а простому пользователю знать о ней вовсе не обязательно. Однако это полезно не только узким специалистам, но и всем, кто заботится о собственной безопасности. Этот гайд поможет разобраться, что такое криптография и какое применение она находит в повседневной жизни.
     TEXT
@@ -48,4 +48,4 @@ posts.each do |post_attrs|
   end
 end
 
-Rails.logger.debug "Seed data created successfully!"
+Rails.logger.debug 'Seed data created successfully!'
