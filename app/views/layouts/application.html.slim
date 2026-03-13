@@ -1,18 +1,18 @@
 doctype html
 html
   head
-    title = content_for(:title) || "Коллективный блог"
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    title = content_for(:title) || t('app_name')
+    meta name='viewport' content='width=device-width, initial-scale=1'
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module'
 
   body.bg-white
     nav.navbar.navbar-expand-md.navbar-light.bg-white.border-bottom
       .container
-        = link_to "Konstantin's Blog", root_path, class: "navbar-brand fw-bold"
-        button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        = link_to t('app_name'), root_path, class: 'navbar-brand fw-bold'
+        button.navbar-toggler type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse'
           span.navbar-toggler-icon
         #navbarCollapse.collapse.navbar-collapse
           ul.navbar-nav.ms-auto.align-items-center
@@ -20,28 +20,27 @@ html
               li.nav-item
                 span.navbar-text.me-3 = current_user.email
               li.nav-item
-                = link_to 'Новый пост', new_post_path, class: 'nav-link'
+                = link_to t('posts.index.new_post_link'), new_post_path, class: 'nav-link'
               li.nav-item
-                = button_to 'Выйти', destroy_user_session_path, 
-                    method: :delete, 
+                = button_to t('sign_out'), destroy_user_session_path,
+                    method: :delete,
                     class: 'btn btn-link nav-link p-0 text-muted',
                     form: { class: 'd-inline' }
             - else
               li.nav-item
-                = link_to 'Войти', new_user_session_path, class: 'nav-link px-4'
+                = link_to t('sign_in'), new_user_session_path, class: 'nav-link px-4'
               li.nav-item
-                = link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-link px-4'
+                = link_to t('sign_up'), new_user_registration_path, class: 'nav-link px-4'
 
     main
       .container.py-4
         - if notice
-          .alert.alert-success.alert-dismissible.fade.show role="alert"
+          .alert.alert-success.alert-dismissible.fade.show role='alert'
             = notice
-            button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
+            button.btn-close type='button' data-bs-dismiss='alert' aria-label='Close'
         - if alert
-          .alert.alert-danger.alert-dismissible.fade.show role="alert"
+          .alert.alert-danger.alert-dismissible.fade.show role='alert'
             = alert
-            button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
+            button.btn-close type='button' data-bs-dismiss='alert' aria-label='Close'
 
         = yield
-        

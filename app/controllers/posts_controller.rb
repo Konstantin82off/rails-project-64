@@ -2,8 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize_creator!, only: %i[edit update destroy]
+  before_action :set_post, only: %i[show]
 
   def index
     @posts = Post.includes(:creator, :category).order(created_at: :desc)
@@ -17,8 +16,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def edit; end
-
   def create
     @post = current_user.created_posts.build(post_params)
 
@@ -29,29 +26,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def update
-    if @post.update(post_params)
-      redirect_to @post, notice: t('.success')
-    else
-      render :edit, status: :unprocessable_content
-    end
-  end
-
-  def destroy
-    @post.destroy
-    redirect_to posts_url, notice: t('.success')
-  end
-
   private
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def authorize_creator!
-    return if @post.creator == current_user
-
-    redirect_to posts_url, alert: t('.unauthorized')
   end
 
   def post_params

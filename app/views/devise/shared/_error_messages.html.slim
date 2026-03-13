@@ -1,7 +1,6 @@
 - if resource.errors.any?
   .alert.alert-danger
-    h4 = "#{pluralize(resource.errors.count, "error")} prohibited this #{resource_name} from being saved:"
+    h4 = t('errors.messages.not_saved', count: resource.errors.count, resource: resource.model_name.human.downcase)
     ul.mb-0
       - resource.errors.full_messages.each do |message|
         li = message
-        

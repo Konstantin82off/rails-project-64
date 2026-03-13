@@ -5,6 +5,5 @@ article.card.mb-4
     p.card-text.mb-2 = truncate(post.body, length: 300)
     .d-flex.flex-wrap.align-items-center.gap-3.text-muted.small
       = render 'likes/like_button', post: post
-      span = time_ago_in_words(post.created_at)
+      span = "#{time_ago_in_words(post.created_at)} #{t('posts.index.ago', time: '')}".strip
       = mail_to post.creator.email, post.creator.email, class: 'text-muted text-decoration-none'
-      

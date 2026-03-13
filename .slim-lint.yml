@@ -7,19 +7,19 @@ exclude:
 
 linters:
   RuboCop:
-    enabled: false
+    enabled: true
   InstanceVariables:
     enabled: false
   QuoteConsistency:
     enabled: false
   TrailingWhitespace:
-    enabled: false
+    enabled: true
   TrailingBlankLines:
-    enabled: false
+    enabled: true
   EmptyLines:
-    enabled: false
+    enabled: true
   LineLength:
-    max: 200
+    max: 180 
   EmptyControlStatement:
     enabled: false
   ConsecutiveControlStatements:

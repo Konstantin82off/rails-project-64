@@ -1,4 +1,4 @@
-.card.mb-2
+.card.mb-2 class=('ms-4' if comment.parent_id)
   .card-body
     .d-flex.align-items-center.mb-2
       i.bi.bi-person-circle.me-2 style="font-size: 1.5rem;"
@@ -7,28 +7,27 @@
           strong = comment.user.email
           span.text-muted.small = l(comment.created_at, format: :long) if comment.created_at
       - if user_signed_in? && comment.user == current_user
-        = button_to post_comment_path(@post, comment), 
-            method: :delete, 
+        = button_to post_comment_path(@post, comment),
+            method: :delete,
             class: 'btn btn-sm btn-link text-danger text-decoration-none p-0',
-            data: { confirm: 'Вы уверены?' } do
+            data: { confirm: t('comments.confirm_delete') } do
           i.bi.bi-trash
 
     p.mb-1 = comment.content
-    
+
     - if user_signed_in?
       .mt-2
         button.btn.btn-sm.btn-link.text-decoration-none.p-0 type="button" data-bs-toggle="collapse" data-bs-target="#reply-form-#{comment.id}"
-          | ответить
+          = t('comments.reply')
 
-        div class="collapse mt-2" id="reply-form-#{comment.id}"
+        .collapse.mt-2 id="reply-form-#{comment.id}"
           = form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f|
             = f.hidden_field :parent_id, value: comment.id
             .mb-2
-              = f.text_area :content, class: 'form-control', rows: 2, placeholder: 'Ваш ответ...'
-            = f.submit 'Ответить', class: 'btn btn-sm btn-primary'
+              = f.text_area :content, class: 'form-control', rows: 2, placeholder: t('comments.reply_placeholder')
+            = f.submit t('comments.reply_submit'), class: 'btn btn-sm btn-primary'
 
 - if comment.has_children?
   .ms-4.mt-2
     - comment.children.each do |child|
       = render 'comments/comment', comment: child
-      
