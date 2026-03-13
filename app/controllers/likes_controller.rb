@@ -1,10 +1,11 @@
+# app/controllers/likes_controller.rb
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post
-
   def create
+    authenticate_user!
+
+    @post = Post.find(params[:post_id])
     @like = @post.likes.build(user: current_user)
 
     if @like.save
@@ -15,6 +16,9 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    authenticate_user!
+
+    @post = Post.find(params[:post_id])
     @like = @post.likes.find_by(user: current_user)
 
     if @like
@@ -23,11 +27,5 @@ class LikesController < ApplicationController
     else
       redirect_to @post, alert: t(".not_found")
     end
-  end
-
-  private
-
-  def set_post
-    @post = Post.find(params[:post_id])
   end
 end

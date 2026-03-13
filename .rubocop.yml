@@ -4,12 +4,17 @@ AllCops:
   Exclude:
     - "bin/**"
     - "db/schema.rb"
+    - "db/**/schema.rb"
+    - "db/**/cable_schema.rb"
+    - "db/**/cache_schema.rb"
+    - "db/**/queue_schema.rb"
     - "db/migrate/**"
-    - "db/cache_schema.rb"
-    - "db/queue_schema.rb"
-    - "db/cable_schema.rb"
     - "vendor/**/*"
     - "node_modules/**/*"
+    - "tmp/**/*"
+    - "log/**/*"
+    - "public/**/*"
+    - "storage/**/*"
   NewCops: enable
   TargetRailsVersion: 8.1
   TargetRubyVersion: 3.4

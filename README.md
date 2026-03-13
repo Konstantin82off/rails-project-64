@@ -40,9 +40,10 @@ cd rails-project-64
 bundle install
 yarn install
 
-# Create database
+# Create and setup database
 bin/rails db:create
 bin/rails db:migrate
+bin/rails db:seed
 
 # Start development server
 bin/dev
@@ -54,11 +55,18 @@ The application will be available at: [http://localhost:3000](http://localhost:3
 
 The project uses the following models:
 
-- **User** — users
-- **Post** — posts
-- **Category** — categories
-- **Comment** — comments
-- **Like** — post ratings
+- **User** — users (authentication via Devise)
+- **Post** — posts (belongs to user through creator)
+- **Category** — categories (posts belong to category)
+- **PostComment** — comments for posts (belongs to user and post, has tree structure via ancestry)
+- **PostLike** — likes for posts (belongs to user and post, uses counter_cache)
+
+Key associations:
+
+- User has many posts (as creator), comments, and likes
+- Post belongs to creator (User), belongs to category, has many comments and likes
+- PostComment belongs to user and post, has ancestry for nested comments
+- PostLike belongs to user and post (with uniqueness validation)
 
 ## **Testing**
 
@@ -76,7 +84,7 @@ bundle exec slim-lint app/views
 
 ## **Deployment on Render**
 
-The project is configured for deployment on [Render.com](https://render.com/) via [render.yaml](https://render.yaml/). Pushing to main or development branch automatically triggers build and deployment.
+The project is configured for deployment on [Render.com](https://render.com/) via render.yaml. Pushing to main or development branch automatically triggers build and deployment.
 
 ## **CI/CD**
 
@@ -89,7 +97,17 @@ GitHub Actions is configured for automatic code checks:
 
 The status badges at the top show the latest build status for both CI and Hexlet checks.
 
+## **Features Implemented**
+
+- ✅ User authentication (Devise with Russian localization)
+- ✅ Creating and viewing posts
+- ✅ Post categories
+- ✅ Nested comments (via ancestry gem)
+- ✅ Post likes with counter_cache
+- ✅ Russian interface localization
+- ✅ Responsive Bootstrap design
+- ✅ Full test coverage
+
 ## **License**
 
 Educational project from Hexlet
-# Test

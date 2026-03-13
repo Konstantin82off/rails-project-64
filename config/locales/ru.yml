@@ -41,6 +41,20 @@ ru:
               too_short: 'слишком короткий (минимум %{count} знаков)'
             password_confirmation:
               confirmation: 'не совпадает с подтверждением'
+        post:
+          attributes:
+            title:
+              blank: 'не может быть пустым'
+              too_short: 'слишком короткий (минимум %{count} символа)'
+            body:
+              blank: 'не может быть пустым'
+              too_short: 'слишком короткий (минимум %{count} символов)'
+            category:
+              required: 'нужно выбрать категорию'
+        post_comment:
+          attributes:
+            content:
+              blank: 'не может быть пустым'
 
   devise:
     sessions:
@@ -96,6 +110,8 @@ ru:
     form:
       title_label: 'Заголовок'
       body_label: 'Содержание'
+      category_label: 'Категория'
+      category_prompt: 'Выберите категорию'
       submit: 'Создать пост'
     create:
       success: 'Пост успешно создан'
@@ -106,6 +122,11 @@ ru:
     unauthorized: 'У вас нет прав для этого действия'
 
   comments:
+    title: 'Комментарии'
+    new:
+      title: 'Оставить комментарий'
+      content_label: 'Текст комментария'
+      submit: 'Отправить'
     create:
       success: 'Комментарий успешно добавлен'
       error: 'Ошибка при добавлении комментария'
@@ -113,6 +134,10 @@ ru:
       success: 'Комментарий удален'
       error: 'Не удалось удалить комментарий'
       unauthorized: 'Вы не можете удалить чужой комментарий'
+    reply: 'ответить'
+    reply_placeholder: 'Ваш ответ...'
+    reply_submit: 'Ответить'
+    confirm_delete: 'Вы уверены?'
 
   likes:
     create:
@@ -127,4 +152,10 @@ ru:
 
   back: 'Назад'
   to_list: 'К списку'
+  sign_out: 'Выйти'
+  sign_in: 'Войти'
+  sign_up: 'Регистрация'
   
+  confirm:
+    delete: 'Вы уверены?'
+    

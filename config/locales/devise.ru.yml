@@ -1,15 +1,34 @@
 ru:
   devise:
-    registrations:
+    sessions:
+      signed_in: "Вход в систему выполнен."
+      signed_out: "Выход из системы выполнен."
+      already_signed_out: "Выход из системы выполнен."
       new:
-        title: "Регистрация"
-    errors:
-      messages:
-        not_saved:
-          one: "Проверьте введенные данные:"
-          other: "Проверьте введенные данные:"
+        sign_in: "Войти"
+    registrations:
+      signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
+      updated: "Ваша учётная запись изменена."
+      destroyed: "До свидания! Ваша учётная запись удалена."
+      new:
+        sign_up: "Регистрация"
+    passwords:
+      updated: "Ваш пароль изменён. Теперь вы вошли в систему."
+      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
+      send_paranoid_instructions: "Если ваш email есть в нашей базе данных, вы получите письмо с ссылкой для восстановления пароля."
+    failure:
+      unauthenticated: "Вам необходимо войти или зарегистрироваться."
+      invalid: "Неверный email или пароль."
+      not_found_in_database: "Неверный email или пароль."
+      already_authenticated: "Вы уже вошли в систему."
+    mailer:
+      reset_password_instructions:
+        subject: "Инструкции по восстановлению пароля"
+      password_change:
+        subject: "Пароль изменён"
   errors:
     messages:
-      blank: "не может быть пустым"
-      too_short: "слишком короткий (минимум %{count} знаков)"
-      confirmation: "не совпадает с подтверждением"
+      not_saved:
+        one: "%{resource}: сохранение не удалось из-за %{count} ошибки"
+        other: "%{resource}: сохранение не удалось из-за %{count} ошибок"
+        

@@ -1,5 +1,5 @@
 .mb-3
-  = link_to 'Все посты', posts_path, class: 'text-decoration-none'
+  = link_to t('posts.index.new_post_link'), posts_path, class: 'text-decoration-none'
   |  / 
   span.text-muted = @post.category.name if @post.category
 
@@ -11,34 +11,35 @@ h1.mb-3 = @post.title
   .card-footer.bg-transparent.d-flex.justify-content-between.align-items-center
     .d-flex.align-items-center.gap-3.text-muted
       span = @post.creator.email
-      span = time_ago_in_words(@post.created_at)
+      span = "#{time_ago_in_words(@post.created_at)} #{t('posts.index.ago', time: '')}".strip
     div
       - if user_signed_in?
         - if @post.liked_by?(current_user)
           = button_to post_like_path(@post, current_user.likes.find_by(post: @post)), 
               method: :delete, 
               class: 'btn btn-link text-decoration-none text-muted p-0 border-0' do
-            = "Понравилось: #{@post.likes.count}"
+            = t('posts.index.likes', count: @post.likes_count)
         - else
           = button_to post_likes_path(@post), 
               method: :post, 
               class: 'btn btn-link text-decoration-none text-muted p-0 border-0' do
-            = "Понравилось: #{@post.likes.count}"
+            = t('posts.index.likes', count: @post.likes_count)
       - else
-        span.text-muted = "Понравилось: #{@post.likes.count}"
+        span.text-muted = t('posts.index.likes', count: @post.likes_count)
 
-h2.mt-4.mb-3 Комментарии
+h2.mt-4.mb-3 = t('comments.title')
 
 - if user_signed_in?
   .card.mb-4
     .card-header.bg-transparent.fw-bold
-      | Оставить комментарий
+      = t('comments.new.title')
     .card-body
       = form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f|
         .mb-3
-          = f.label :content, 'Текст комментария', class: 'form-label'
+          = f.label :content, t('comments.new.content_label'), class: 'form-label'
           = f.text_area :content, class: 'form-control', rows: 3
-        = f.submit 'Отправить', class: 'btn btn-primary'
+        = f.submit t('comments.new.submit'), class: 'btn btn-primary'
 
 - @post.comments.roots.order(created_at: :desc).each do |comment|
-  = render 'comments/comment', comment: comment
+  = render 'comments/comment', comment: comment, post: @post
+  
