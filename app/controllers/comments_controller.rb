@@ -1,12 +1,9 @@
-# app/controllers/comments_controller.rb
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post
-  before_action :set_comment, only: [:destroy]
-
   def create
+    authenticate_user!
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
 
@@ -18,6 +15,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authenticate_user!
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+
     if @comment.user == current_user
       @comment.destroy
       redirect_to @post, notice: t(".success")
@@ -28,15 +29,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
-
-  def set_comment
-    @comment = @post.comments.find(params[:id])
-  end
-
   def comment_params
-    params.expect(post_comment: %i[content parent_id])
+    params.expect(post_comment: [:content, :parent_id])
   end
 end
