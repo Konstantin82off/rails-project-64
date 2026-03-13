@@ -30,6 +30,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.expect(post_comment: [:content, :parent_id])
+    params.expect(post_comment: %i[content parent_id])
   end
 end
