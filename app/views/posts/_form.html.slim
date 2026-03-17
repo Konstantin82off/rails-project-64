@@ -23,7 +23,7 @@
     = f.collection_select :category_id, Category.all, :id, :name,
         { prompt: t('posts.form.category_prompt') },
         class: 'form-select'
-    - if post.errors[:category_id].any?  # Изменено с category на category_id
+    - if post.errors[:category_id].any? # Изменено с category на category_id
       .text-danger.small = post.errors[:category_id].join(', ')
 
   = f.submit t('posts.form.submit'), class: 'btn btn-primary'
