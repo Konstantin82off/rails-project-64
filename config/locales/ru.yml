@@ -1,4 +1,6 @@
 ru:
+  app_name: 'Коллективный блог'
+
   helpers:
     submit:
       user:
@@ -141,9 +143,11 @@ ru:
 
   likes:
     create:
+      title: 'Поставить лайк'
       success: 'Лайк поставлен'
       error: 'Ошибка при добавлении лайка'
     destroy:
+      title: 'Убрать лайк'
       success: 'Лайк убран'
       unauthorized: 'Вы не можете удалить чужой лайк'
       not_found: 'Лайк не найден'
@@ -158,4 +162,3 @@ ru:
   
   confirm:
     delete: 'Вы уверены?'
-    
