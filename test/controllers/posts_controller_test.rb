@@ -29,14 +29,26 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should create post when signed in' do
     sign_in @user
     assert_difference('Post.count', 1) do
-      post posts_url, params: { post: { title: 'New Post', body: 'Body text', category_id: @category.id } }
+      post posts_url, params: {
+        post: {
+          title: 'New Post',
+          body: 'Body text with sufficient length to pass validation (at least 10 chars)',
+          category_id: @category.id
+        }
+      }
     end
     assert_redirected_to post_path(Post.last)
   end
 
   test 'should not create post when not signed in' do
     assert_no_difference('Post.count') do
-      post posts_url, params: { post: { title: 'New Post', body: 'Body text', category_id: @category.id } }
+      post posts_url, params: {
+        post: {
+          title: 'New Post',
+          body: 'Body text with sufficient length to pass validation (at least 10 chars)',
+          category_id: @category.id
+        }
+      }
     end
     assert_redirected_to new_user_session_path
   end
