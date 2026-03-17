@@ -1,0 +1,4 @@
+- flash.each do |type, msg|
+  div class="alert alert-#{map_alert_type(type)} alert-dismissible fade show" role='alert'
+    = msg
+    button.btn-close type='button' data-bs-dismiss='alert' aria-label='Close'
