@@ -1,3 +1,6 @@
+- comment ||= local_assigns[:comment]
+- post ||= local_assigns[:post]
+
 .card.mb-2 class=('ms-4' if comment.parent_id)
   .card-body
     .d-flex.align-items-center.mb-2
@@ -7,7 +10,7 @@
           strong = comment.user.email
           span.text-muted.small = l(comment.created_at, format: :long) if comment.created_at
       - if user_signed_in? && comment.user == current_user
-        = button_to post_comment_path(@post, comment),
+        = button_to post_comment_path(post, comment),
             method: :delete,
             class: 'btn btn-sm btn-link text-danger text-decoration-none p-0',
             data: { confirm: t('comments.confirm_delete') } do
@@ -21,7 +24,7 @@
           = t('comments.reply')
 
         .collapse.mt-2 id="reply-form-#{comment.id}"
-          = form_with(model: [@post, PostComment.new], url: post_comments_path(@post), local: true) do |f|
+          = form_with(model: [post, PostComment.new], url: post_comments_path(post), local: true) do |f|
             = f.hidden_field :parent_id, value: comment.id
             .mb-2
               = f.text_area :content, class: 'form-control', rows: 2, placeholder: t('comments.reply_placeholder')
@@ -30,4 +33,4 @@
 - if comment.has_children?
   .ms-4.mt-2
     - comment.children.each do |child|
-      = render 'comments/comment', comment: child
+      = render 'comments/comment', comment: child, post: post
