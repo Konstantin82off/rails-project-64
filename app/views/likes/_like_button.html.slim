@@ -2,13 +2,18 @@
   - if post.liked_by?(current_user)
     = button_to post_like_path(post, current_user.likes.find_by(post: post)),
         method: :delete,
-        class: 'btn btn-link p-0 text-decoration-none text-muted border-0' do
+        class: 'btn btn-link p-0 text-decoration-none text-muted border-0 d-flex align-items-center gap-1',
+        title: t('likes.destroy.title') do
+      i.bi.bi-hand-thumbs-up-fill.text-primary
       = t('posts.index.likes', count: post.likes_count)
   - else
     = button_to post_likes_path(post),
         method: :post,
-        class: 'btn btn-link p-0 text-decoration-none text-muted border-0' do
+        class: 'btn btn-link p-0 text-decoration-none text-muted border-0 d-flex align-items-center gap-1',
+        title: t('likes.create.title') do
+      i.bi.bi-hand-thumbs-up
       = t('posts.index.likes', count: post.likes_count)
 - else
-  span.text-muted
+  span.text-muted.d-flex.align-items-center.gap-1
+    i.bi.bi-hand-thumbs-up
     = t('posts.index.likes', count: post.likes_count)
