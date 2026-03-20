@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    authenticate_user!
     @post = Post.find(params[:id])
     @comments = @post.comments.roots.order(created_at: :desc).includes(:user)
     @comment = PostComment.new
