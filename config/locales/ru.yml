@@ -30,6 +30,9 @@ ru:
       mark: '*'
 
   activerecord:
+    attributes:
+      post_comment:
+        content: 'Текст комментария'
     errors:
       models:
         user:
