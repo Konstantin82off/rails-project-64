@@ -7,7 +7,7 @@ class LikesController < ApplicationController
 
     @like = @post.likes.find_or_create_by(user: current_user)
 
-    redirect_to @post # Без flash-сообщения
+    redirect_to @post
   end
 
   def destroy
@@ -17,6 +17,6 @@ class LikesController < ApplicationController
     @like = @post.likes.find_by(user: current_user)
     @like&.destroy
 
-    redirect_to @post # Без flash-сообщения
+    redirect_to @post
   end
 end
