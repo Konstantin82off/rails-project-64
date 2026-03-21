@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Ресурсный роутинг для постов (только используемые экшены)
-  resources :posts, only: %i[index new create show] do
+  resources :posts, only: %i[new create show] do
     # Комментарии - вложенный ресурс
     resources :comments, only: %i[create destroy]
 
