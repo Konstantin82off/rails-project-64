@@ -11,7 +11,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get posts_url
+    get root_url
     assert_response :success
   end
 
