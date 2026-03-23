@@ -27,7 +27,7 @@ user2 = User.find_or_create_by!(email: 'test2@example.org') do |u|
   u.password_confirmation = 'password'
 end
 
-# Создаем тестовые посты с русским Faker
+# Создаем тестовые посты с русскими текстами
 posts = [
   {
     title: 'Что такое динамическое программирование',
@@ -46,8 +46,8 @@ posts = [
 # Добавляем дополнительные посты через Faker
 10.times do
   posts << {
-    title: Faker::Book.title,
-    body: Faker::Lorem.paragraph(sentence_count: 15),
+    title: Faker::Lorem.sentence(word_count: rand(3..8)).chomp('.'),
+    body: Faker::Lorem.paragraph(sentence_count: rand(10..20)),
     category: categories.sample,
     creator: [user, user2].sample
   }
