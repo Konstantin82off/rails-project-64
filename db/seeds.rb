@@ -2,9 +2,6 @@
 
 require 'faker'
 
-# Устанавливаем русскую локаль
-Faker::Config.locale = :ru
-
 # Создаем категории
 categories_data = [
   { name: 'Программирование' },
@@ -27,36 +24,27 @@ user2 = User.find_or_create_by!(email: 'test2@example.org') do |u|
   u.password_confirmation = 'password'
 end
 
-# Функция для генерации русского текста
-def russian_paragraph(sentence_count = 5)
-  sentences = []
-  sentence_count.times do
-    sentences << Faker::Lorem.sentence(word_count: rand(5..12))
-  end
-  sentences.join(' ')
-end
-
-# Создаем тестовые посты с русским текстом
+# Создаем тестовые посты
 posts = [
   {
     title: 'Что такое динамическое программирование',
-    body: russian_paragraph(20),
+    body: Faker::Lorem.paragraph(sentence_count: 20),
     category: categories[1],
     creator: user2
   },
   {
     title: 'Что такое криптография?',
-    body: russian_paragraph(20),
+    body: Faker::Lorem.paragraph(sentence_count: 20),
     category: categories[0],
     creator: user
   }
 ]
 
-# Добавляем дополнительные посты через Faker с русским текстом
+# Добавляем дополнительные посты
 10.times do
   posts << {
     title: Faker::Lorem.sentence(word_count: rand(3..8)).chomp('.'),
-    body: russian_paragraph(rand(10..20)),
+    body: Faker::Lorem.paragraph(sentence_count: rand(10..20)),
     category: categories.sample,
     creator: [user, user2].sample
   }
