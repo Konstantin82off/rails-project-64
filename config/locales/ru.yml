@@ -26,12 +26,14 @@ ru:
 
   simple_form:
     required:
-      text: 'не может быть пустым'
+      text: 'обязательное поле'
       mark: '*'
 
   activerecord:
     attributes:
       post:
+        title: 'Заголовок'
+        body: 'Содержание'
         category: 'Категория'
       post_comment:
         content: 'Текст комментария'
