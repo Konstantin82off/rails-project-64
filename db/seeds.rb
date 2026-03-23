@@ -2,6 +2,9 @@
 
 require 'faker'
 
+# Устанавливаем русскую локаль для Faker
+Faker::Config.locale = :ru
+
 # Создаем категории с find_or_create_by!
 categories_data = [
   { name: 'Программирование' },
@@ -24,7 +27,7 @@ user2 = User.find_or_create_by!(email: 'test2@example.org') do |u|
   u.password_confirmation = 'password'
 end
 
-# Создаем тестовые посты с Faker
+# Создаем тестовые посты с русским Faker
 posts = [
   {
     title: 'Что такое динамическое программирование',
