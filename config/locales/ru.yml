@@ -31,6 +31,8 @@ ru:
 
   activerecord:
     attributes:
+      post:
+        category: 'Категория'
       post_comment:
         content: 'Текст комментария'
     errors:
