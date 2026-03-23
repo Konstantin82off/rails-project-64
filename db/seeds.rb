@@ -27,17 +27,26 @@ user2 = User.find_or_create_by!(email: 'test2@example.org') do |u|
   u.password_confirmation = 'password'
 end
 
-# Создаем тестовые посты с русским Faker
+# Функция для генерации русского текста
+def russian_paragraph(sentence_count = 5)
+  sentences = []
+  sentence_count.times do
+    sentences << Faker::Lorem.sentence(word_count: rand(5..12))
+  end
+  sentences.join(' ')
+end
+
+# Создаем тестовые посты с русским текстом
 posts = [
   {
     title: 'Что такое динамическое программирование',
-    body: Faker::Lorem.paragraph_by_chars(number: 500),
+    body: russian_paragraph(20),
     category: categories[1],
     creator: user2
   },
   {
     title: 'Что такое криптография?',
-    body: Faker::Lorem.paragraph_by_chars(number: 500),
+    body: russian_paragraph(20),
     category: categories[0],
     creator: user
   }
@@ -47,7 +56,7 @@ posts = [
 10.times do
   posts << {
     title: Faker::Lorem.sentence(word_count: rand(3..8)).chomp('.'),
-    body: Faker::Lorem.paragraph_by_chars(number: rand(300..800)),
+    body: russian_paragraph(rand(10..20)),
     category: categories.sample,
     creator: [user, user2].sample
   }
