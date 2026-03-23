@@ -2,10 +2,10 @@
 
 require 'faker'
 
-# Устанавливаем русскую локаль для Faker
+# Устанавливаем русскую локаль
 Faker::Config.locale = :ru
 
-# Создаем категории с find_or_create_by!
+# Создаем категории
 categories_data = [
   { name: 'Программирование' },
   { name: 'Жизнь' },
@@ -27,27 +27,27 @@ user2 = User.find_or_create_by!(email: 'test2@example.org') do |u|
   u.password_confirmation = 'password'
 end
 
-# Создаем тестовые посты с русскими текстами
+# Создаем тестовые посты с русским Faker
 posts = [
   {
     title: 'Что такое динамическое программирование',
-    body: Faker::Lorem.paragraph(sentence_count: 20),
+    body: Faker::Lorem.paragraph_by_chars(number: 500),
     category: categories[1],
     creator: user2
   },
   {
     title: 'Что такое криптография?',
-    body: Faker::Lorem.paragraph(sentence_count: 20),
+    body: Faker::Lorem.paragraph_by_chars(number: 500),
     category: categories[0],
     creator: user
   }
 ]
 
-# Добавляем дополнительные посты через Faker
+# Добавляем дополнительные посты через Faker с русским текстом
 10.times do
   posts << {
     title: Faker::Lorem.sentence(word_count: rand(3..8)).chomp('.'),
-    body: Faker::Lorem.paragraph(sentence_count: rand(10..20)),
+    body: Faker::Lorem.paragraph_by_chars(number: rand(300..800)),
     category: categories.sample,
     creator: [user, user2].sample
   }
