@@ -156,9 +156,6 @@ GEM
     honeybadger (6.4.0)
       logger
       ostruct
-    hpricot (0.8.6)
-    html2slim (0.2.0)
-      hpricot
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     i18n-debug (1.2.0)
@@ -507,7 +504,6 @@ DEPENDENCIES
   faker
   flash_rails_messages
   honeybadger
-  html2slim
   i18n-debug
   image_processing (~> 1.2)
   jbuilder

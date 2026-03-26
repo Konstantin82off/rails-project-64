@@ -70,7 +70,7 @@ group :development do
   # Use console on exceptions pages
   gem 'web-console'
   # Convert HTML to Slim
-  gem 'html2slim'
+  # gem 'html2slim'
   # Debug i18n
   gem 'i18n-debug'
   # Rails support for Ruby LSP
