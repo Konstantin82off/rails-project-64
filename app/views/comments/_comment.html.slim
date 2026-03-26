@@ -9,7 +9,7 @@
         .d-flex.align-items-center.gap-2
           strong = comment.user.email
           span.text-muted.small = l(comment.created_at, format: :long) if comment.created_at
-      - if user_signed_in? && comment.user == current_user
+      - if user_signed_in? && comment.user == current_user && !comment.has_children?
         = button_to post_comment_path(post, comment),
             method: :delete,
             class: 'btn btn-sm btn-link text-danger text-decoration-none p-0',
